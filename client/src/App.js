@@ -89,50 +89,50 @@ function App() {
 
             <div className="dates">
               <p>
-                {task.dueDate}
+                {new Date(task.dueDate).toLocaleDateString()}
               </p>
             </div>
 
-            <div className="done">
-              <button classnName="done"
-                onClick={() => handleUpdate(task._id, { isDone: true })}
-              >
-                Done?
-              </button>
-            </div>
+            <button className="done"
+              onClick={() => handleUpdate(task._id, { isDone: true })}
+            >
+              Done?
+            </button>
           </li>
         )
       )}
+        <form className="item" onSubmit={(event) => handleSubmit(event)}>
+          <label>
+            <input
+              className="items"
+              type="text"
+              required
+              id="name"
+              name="name"
+              label="Name"
+              value={formValues.name}
+              onChange={(event) => handleChange(event)} 
+            />
+          </label>
+          <label>
+            <input
+              className="dates"
+              type="date"
+              required
+              id="dueDate"
+              name="dueDate"
+              label="dueDate"
+              value={formValues.dueDate}
+              onChange={(event) => handleChange(event)} 
+            />
+          </label>
+          <input
+            className="done"
+            type="submit"
+            value="Add"
+          />
+        </form>
       </ul>
-
-      <form className="task-form" onSubmit={(event) => handleSubmit(event)}>
-        <label>
-          <input
-            type="text"
-            required
-            id="name"
-            name="name"
-            label="Name"
-            value={formValues.name}
-            onChange={(event) => handleChange(event)} 
-          />
-        </label>
-        <label>
-          <input
-            type="date"
-            required
-            id="dueDate"
-            name="dueDate"
-            label="dueDate"
-            value={formValues.dueDate}
-            onChange={(event) => handleChange(event)} 
-          />
-        </label>
-        <input
-          type="submit"
-          value="Add"
-        />
-      </form>
     </div>
   );
 }
