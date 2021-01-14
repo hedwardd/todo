@@ -27,7 +27,14 @@ h1{
 	font-size: 4vw;
 	text-align: center;
 	color: #CD4A77;
-	text-shadow: 1px 1px 1px #000000;
+  text-shadow: 1px 1px 1px #000000;
+  margin-bottom: 0vw;
+}
+.headers{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 .list{
   display: flex;
@@ -96,34 +103,6 @@ h2{
 	margin-top: 0;
 	margin-bottom: 2vw;
 }
-	ul{
-		list-style: none;
-	}
-	.headers{
-		display: flex;
-		flex-direction: row;
-		justify-content: space-around;
-	}
-
-/* .App {
-  text-align: center;
-  font-family: "Courier New", monospace;
-  width: 100%;
-} */
-
-/* .list {
+ul{
   list-style: none;
-} */
-
-/* .item {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-} */
-
-.task-form {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
 }
-

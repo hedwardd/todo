@@ -78,6 +78,11 @@ function App() {
       <h1>
         My To-dos
       </h1>
+      <div class="headers">
+        <h2>item</h2>
+        <h2>date</h2>
+        <h2>done?</h2>
+      </div>
       <ul className="list">
         {tasks.map((task) => task.isDone ? "" : (
           <li className="item" key={task._id}>
@@ -101,7 +106,10 @@ function App() {
           </li>
         )
       )}
-        <form className="item" onSubmit={(event) => handleSubmit(event)}>
+        <form
+          className="item"
+          onSubmit={(event) => handleSubmit(event)}
+        >
           <label>
             <input
               className="items"
