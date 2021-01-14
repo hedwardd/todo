@@ -81,17 +81,25 @@ function App() {
       <ul className="list">
         {tasks.map((task) => task.isDone ? "" : (
           <li className="item" key={task._id}>
-            <p>
-              {task.name}
-            </p>
-            <p>
-              {task.dueDate}
-            </p>
-            <button
-              onClick={() => handleUpdate(task._id, { isDone: true })}
-            >
-              Done?
-            </button>
+            <div className="items">
+              <p>
+                {task.name}
+              </p>
+            </div>
+
+            <div className="dates">
+              <p>
+                {task.dueDate}
+              </p>
+            </div>
+
+            <div className="done">
+              <button classnName="done"
+                onClick={() => handleUpdate(task._id, { isDone: true })}
+              >
+                Done?
+              </button>
+            </div>
           </li>
         )
       )}
