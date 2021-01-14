@@ -21,7 +21,8 @@ app.get('/api/tasks', (req, res) => {
       console.error(err);
       res.json({ error: err });
     } else {
-      res.json(foundTasks);
+      const sortedTasks = foundTasks.sort((t1, t2) => new Date(t1.dueDate).getTime() > new Date(t2.dueDate).getTime());
+      res.json(sortedTasks);
     }
   })
 });
