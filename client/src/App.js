@@ -63,7 +63,10 @@ function App() {
     event.preventDefault();
     const result = await postTask(formValues);
     console.log(result);
-    if (result.success) setToFetch(true);
+    if (result.success) {
+      setFormValues({ name: '', dueDate: '' });
+      setToFetch(true);
+    };
   }
 
   async function handleUpdate(taskId, update) {
