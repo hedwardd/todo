@@ -5,7 +5,29 @@ body{
 	background-size: 100vw;
 	background-repeat: no-repeat;
 }
-.App{
+h1{
+	font-family: Henny Penny;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 4vw;
+	text-align: center;
+	color: #CD4A77;
+  text-shadow: 1px 1px 1px #000000;
+  margin-bottom: 0vw;
+}
+h2{
+	font-family: Henny Penny;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 2.5vw;
+	text-align: center;
+	color: #CD4A77;
+	text-shadow: 1px 1px 1px #000000;
+}
+ul{
+  list-style: none;
+}
+.task-list{
 	width: 50vw;
 	height: auto;
 	margin-left: auto;
@@ -19,16 +41,6 @@ body{
   text-align: center;
   display: flex;
   flex-direction: column;
-}
-h1{
-	font-family: Henny Penny;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 4vw;
-	text-align: center;
-	color: #CD4A77;
-  text-shadow: 1px 1px 1px #000000;
-  margin-bottom: 0vw;
 }
 .headers{
   width: 100%;
@@ -44,20 +56,11 @@ h1{
 	justify-content: space-around;
 	margin-left: -5vw;
 }
-.item{
+.task{
 	display: flex;
 	flex-direction: row;
 	flex: 1;
 	justify-content: space-around;
-}
-h2{
-	font-family: Henny Penny;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 2.5vw;
-	text-align: center;
-	color: #CD4A77;
-	text-shadow: 1px 1px 1px #000000;
 }
 .items{
 	width: 14vw;
@@ -102,7 +105,4 @@ h2{
 	align-items: center;
 	margin-top: 0;
 	margin-bottom: 2vw;
-}
-ul{
-  list-style: none;
 }
