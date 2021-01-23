@@ -1,23 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { _attemptTaskSave } from '../redux/actions/taskFormActions';
 
-async function postTask({ name, dueDate }) {
-  const newTask = { name, dueDate };
-  const response = await fetch('/api/tasks', {
-    method: 'POST',
-    body: JSON.stringify(newTask),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  if (response.status !== 200) {
-    return { error: response.status }
-  } else {
-    const data = await response.json();
-    return data;
-  }
-}
+// async function postTask({ name, dueDate }) {
+//   const newTask = { name, dueDate };
+//   const response = await fetch('/api/tasks', {
+//     method: 'POST',
+//     body: JSON.stringify(newTask),
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   });
+//   if (response.status !== 200) {
+//     return { error: response.status }
+//   } else {
+//     const data = await response.json();
+//     return data;
+//   }
+// }
 
-function NewTaskForm({setToFetch}) {
+const mapDispatchToProps = (dispatch) => ({
+  attemptTaskSave: (name, dueDate) => dispatch(_attemptTaskSave(name, dueDate)),
+});
+
+function Presentational({ attemptTaskSave }) {
 
   const [formValues, setFormValues] = useState({ name: '', dueDate: '' });
   const handleChange = ({ target }) => {
@@ -28,14 +34,10 @@ function NewTaskForm({setToFetch}) {
     });
   };
 
-  async function handleSubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault();
-    const result = await postTask(formValues);
-    console.log(result);
-    if (result.success) {
-      setFormValues({ name: '', dueDate: '' });
-      setToFetch(true);
-    };
+    const { name, dueDate } = formValues;
+    attemptTaskSave(name, dueDate);
   }
 
   return (
@@ -75,5 +77,7 @@ function NewTaskForm({setToFetch}) {
     </form>
   )
 }
+
+const NewTaskForm = connect(null, mapDispatchToProps)(Presentational);
 
 export default NewTaskForm;
