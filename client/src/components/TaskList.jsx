@@ -52,7 +52,7 @@ function TaskList() {
       </div>
       <ul className="list">
         {tasks.map((task) => task.isDone ? "" : (
-          <li className="task" key={task._id}>
+          <li className="task" key={task.id}>
             <div className="items">
               <p>
                 {task.name}
@@ -66,7 +66,7 @@ function TaskList() {
             </div>
 
             <button className="done"
-              onClick={() => handleUpdate(task._id, { isDone: true })}
+              onClick={() => handleUpdate(task.id, { isDone: true })}
             >
               Done?
             </button>
