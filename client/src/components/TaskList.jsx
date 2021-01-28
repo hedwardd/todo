@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { _attemptFetchTasks } from '../redux/actions/taskListActions';
 import NewTaskForm from './NewTaskForm';
 
 async function updateTask(taskId, update) {
@@ -17,18 +19,23 @@ async function updateTask(taskId, update) {
   }
 }
 
-function TaskList() {
 
-  const [tasks, setTasks] = useState([]);
+const mapStateToProps = (state) => ({
+  tasks: state.taskList.tasks,
+  fetchErrorMessage: state.taskList.fetchErrorMessage,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  attemptFetchTasks: () => dispatch(_attemptFetchTasks()),
+});
+
+
+function Presentational({ tasks, fetchErrorMessage, attemptFetchTasks }) {
+
   const [toFetch, setToFetch] = useState(true);
   useEffect(() => {
-    async function fetchTasks() {
-      const res = await fetch('/api/tasks');
-      const data = await res.json();
-      if (data) setTasks(data);
-    }
     if (toFetch) {
-      fetchTasks();
+      attemptFetchTasks();
       setToFetch(false);
     }
   }, [toFetch]);
@@ -39,13 +46,12 @@ function TaskList() {
     if (result.success) setToFetch(true);
   }
 
-
   return (
     <div className="task-list">
       <h1>
         My To-dos
       </h1>
-      <div class="headers">
+      <div className="headers">
         <h2>item</h2>
         <h2>date</h2>
         <h2>done?</h2>
@@ -80,5 +86,7 @@ function TaskList() {
     </div>
   );
 }
+
+const TaskList = connect(mapStateToProps, mapDispatchToProps)(Presentational);
 
 export default TaskList;
