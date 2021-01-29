@@ -9,7 +9,9 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-db.sequelize.sync({ force: true }).then(() => {
+const forceDBSync = (process.env.NODE_ENV === 'DEV') ? true : false;
+
+db.sequelize.sync({ force: forceDBSync }).then(() => {
   console.log("Drop and re-sync db.");
 });
 
