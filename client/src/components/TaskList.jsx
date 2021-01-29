@@ -1,61 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { _attemptFetchTasks } from '../redux/actions/taskListActions';
+import { useDispatch, useSelector } from "react-redux";
+import { getTasks, updateTask} from "../actions/task";
 import NewTaskForm from './NewTaskForm';
 
-async function updateTask(taskId, update) {
-  const response = await fetch(`/api/tasks/${taskId}`, {
-    method: 'PUT',
-    body: JSON.stringify(update),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  if (response.status !== 200) {
-    return { error: response.status }
-  } else {
-    const data = await response.json();
-    return data;
-  }
-}
+const TaskList = (props) => {
 
+  const { tasks, toFetch } = useSelector(state => state.task);
+  const { message } = useSelector(state => state.message);
 
-const mapStateToProps = (state) => ({
-  tasks: state.taskList.tasks,
-  fetchErrorMessage: state.taskList.fetchErrorMessage,
-});
+  const dispatch = useDispatch();
 
-const mapDispatchToProps = (dispatch) => ({
-  attemptFetchTasks: () => dispatch(_attemptFetchTasks()),
-});
+  const handleUpdateTask = (taskId, update) => {
+    dispatch(updateTask(taskId, update));
+  };
 
-
-function Presentational({ tasks, fetchErrorMessage, attemptFetchTasks }) {
-
-  const [toFetch, setToFetch] = useState(true);
   useEffect(() => {
-    if (toFetch) {
-      attemptFetchTasks();
-      setToFetch(false);
-    }
+    if (toFetch) dispatch(getTasks());
   }, [toFetch]);
-
-  async function handleUpdate(taskId, update) {
-    const result = await updateTask(taskId, update);
-    console.log(result);
-    if (result.success) setToFetch(true);
-  }
 
   return (
     <div className="task-list">
+
       <h1>
         My To-dos
       </h1>
+
       <div className="headers">
         <h2>item</h2>
         <h2>date</h2>
         <h2>done?</h2>
       </div>
+      
       <ul className="list">
         {tasks.map((task) => task.isDone ? "" : (
           <li className="task" key={task.id}>
@@ -71,8 +46,9 @@ function Presentational({ tasks, fetchErrorMessage, attemptFetchTasks }) {
               </p>
             </div>
 
-            <button className="done"
-              onClick={() => handleUpdate(task.id, { isDone: true })}
+            <button
+              className="done"
+              onClick={() => handleUpdateTask(task.id, { isDone: true })}
             >
               Done?
             </button>
@@ -80,13 +56,18 @@ function Presentational({ tasks, fetchErrorMessage, attemptFetchTasks }) {
         )
       )}
 
-      <NewTaskForm setToFetch={setToFetch} />
+      <NewTaskForm />
 
       </ul>
+
+      {message && (
+        <p>
+          {message}
+        </p>
+      )}
+
     </div>
   );
 }
-
-const TaskList = connect(mapStateToProps, mapDispatchToProps)(Presentational);
 
 export default TaskList;
