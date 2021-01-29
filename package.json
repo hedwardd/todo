@@ -14,7 +14,7 @@
     "sequelize": "^6.4.0"
   },
   "scripts": {
-    "start": "npx nodemon server.js",
+    "start": "npx nodemon --ignore client/ server.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "devDependencies": {
