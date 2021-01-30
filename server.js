@@ -20,6 +20,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 // Set routes
 require("./app/routes/task.routes")(app);
+require("./app/routes/list.routes")(app);
 
 // The 'catchall' handler: for any request that doesn't
 // match one above, send back React's index.html file.
