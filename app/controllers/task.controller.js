@@ -5,9 +5,9 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Task
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.name || !req.body.dueDate) {
+  if (!req.body.name || !req.body.dueDate || !req.body.listId) {
     res.json({
-      error: "Name and due date required."
+      error: "Name, due date, and list required."
     });
     return;
   }
@@ -16,6 +16,7 @@ exports.create = (req, res) => {
   const task = {
     name: req.body.name,
     dueDate: req.body.dueDate,
+    listId: req.body.listId,
     isDone: false,
   };
 
@@ -32,10 +33,10 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all Tasks from the database.
+// Retrieve all Tasks from the database in a given list.
 exports.findAll = (req, res) => {
-  const list = req.query.list;
-  var condition = list ? { list: { [Op.like]: `%${list}%` } } : null;
+  const listId = req.query.listId;
+  const condition = listId ? { list: { [Op.like]: `%${list}%` } } : null;
 
   Task.findAll({ where: condition })
     .then(data => {
@@ -132,7 +133,7 @@ exports.deleteAll = (req, res) => {
     });
 };
 
-// Find all published Tasks
+// Find all done Tasks
 exports.findAllDone = (req, res) => {
   Task.findAll({ where: { isDone: true } })
     .then(data => {
