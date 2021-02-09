@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from "react-redux";
-import { addTask } from "../actions/task";
+import { useDispatch } from 'react-redux';
+import { addTask } from '../actions/task';
 
 
 const NewTaskForm = (props) => {
