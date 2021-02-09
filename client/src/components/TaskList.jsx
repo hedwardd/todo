@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { getTasks, updateTask} from "../actions/task";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTasks, updateTask} from '../actions/task';
 import NewTaskForm from './NewTaskForm';
+import ThemePicker from './ThemePicker';
 
 const TaskList = (props) => {
 
@@ -65,6 +66,8 @@ const TaskList = (props) => {
           {message}
         </p>
       )}
+
+      <ThemePicker />
 
     </div>
   );
