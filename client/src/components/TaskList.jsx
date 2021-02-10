@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getTasks, updateTask} from '../actions/task';
 import NewTaskForm from './NewTaskForm';
 import ThemePicker from './ThemePicker';
+import { TaskListWrapper, StyledH1, H2Wrapper, StyledH2, StyledUL, TaskListItem, TaskNameWrapper, TaskDateWrapper, DoneButton } from '../styles/taskList';
 
 const TaskList = (props) => {
 
@@ -20,46 +21,53 @@ const TaskList = (props) => {
   }, [toFetch]);
 
   return (
-    <div className="task-list">
+    <TaskListWrapper>
 
-      <h1>
+      <StyledH1>
         My To-dos
-      </h1>
+      </StyledH1>
 
-      <div className="headers">
-        <h2>item</h2>
-        <h2>date</h2>
-        <h2>done?</h2>
-      </div>
+      <H2Wrapper>
+        <StyledH2>
+          item
+        </StyledH2>
+
+        <StyledH2>
+          date
+        </StyledH2>
+
+        <StyledH2>
+          done?
+        </StyledH2>
+      </H2Wrapper>
       
-      <ul className="list">
+      <StyledUL>
         {tasks.map((task) => task.isDone ? "" : (
-          <li className="task" key={task.id}>
-            <div className="items">
+          <TaskListItem className="task" key={task.id}>
+            <TaskNameWrapper className="items">
               <p>
                 {task.name}
               </p>
-            </div>
+            </TaskNameWrapper>
 
-            <div className="dates">
+            <TaskDateWrapper>
               <p>
                 {new Date(task.dueDate).toLocaleDateString()}
               </p>
-            </div>
+            </TaskDateWrapper>
 
-            <button
-              className="done"
+            <DoneButton
               onClick={() => handleUpdateTask(task.id, { isDone: true })}
             >
               Done?
-            </button>
-          </li>
+            </DoneButton>
+          </TaskListItem>
         )
       )}
 
       <NewTaskForm />
 
-      </ul>
+      </StyledUL>
 
       {message && (
         <p>
@@ -69,7 +77,7 @@ const TaskList = (props) => {
 
       <ThemePicker />
 
-    </div>
+    </TaskListWrapper>
   );
 }
 

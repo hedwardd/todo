@@ -1,6 +1,6 @@
 import { SET_THEME } from '../actions/types';
 
-const initialState = { theme: 'classy' };
+const initialState = { theme: 'dark' };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;

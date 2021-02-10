@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTask } from '../actions/task';
+import { TaskListItem, TaskNameWrapper, TaskDateWrapper, DoneButton } from '../styles/taskList';
 
 
 const NewTaskForm = (props) => {
@@ -35,44 +36,45 @@ const NewTaskForm = (props) => {
   }
 
   return (
-    <form
-      className="task"
+    <TaskListItem
+      as="form"
       onSubmit={(event) => handleSubmit(event)}
     >
-      <label>
-        <input
-          className="items"
-          type="text"
-          required
-          id="name"
-          name="name"
-          label="Name"
-          value={formValues.name}
-          onChange={(event) => handleChange(event)} 
-        />
-      </label>
-
-      <label>
-        <input
-          className="dates"
-          type="date"
-          required
-          id="dueDate"
-          name="dueDate"
-          label="dueDate"
-          value={formValues.dueDate}
-          onChange={(event) => handleChange(event)} 
-        />
-      </label>
+      
+      <TaskNameWrapper
+        as="input"
+        type="text"
+        required
+        id="name"
+        name="name"
+        label="Name"
+        value={formValues.name}
+        onChange={(event) => handleChange(event)} 
+      />
+    
+      <TaskDateWrapper
+        as="input"
+        type="date"
+        required
+        id="dueDate"
+        name="dueDate"
+        label="dueDate"
+        value={formValues.dueDate}
+        onChange={(event) => handleChange(event)} 
+      />      
 
       {isLoading ? (
-        <button className="done" disabled="true" >
+        <DoneButton disabled="true" >
           <p>Loading...</p>
-        </button>
+        </DoneButton>
       ) : (
-        <input className="done" type="submit" value="Add" />
+        <DoneButton
+          as="input"
+          type="submit"
+          value="Add"
+        />
       )}
-    </form>
+    </TaskListItem>
   )
 }
 

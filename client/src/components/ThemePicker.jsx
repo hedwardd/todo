@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTheme } from '../actions/theme';
+import { StyledSelect } from '../styles/taskList';
 
 
 const ThemePicker = (props) => {
@@ -15,13 +16,14 @@ const ThemePicker = (props) => {
   };
 
   return (
-    <select value={theme} onChange={handleChange}>
+    <StyledSelect value={theme} onChange={handleChange}>
+      <option value="original">original</option>
   		<option value="light">light</option>
   		<option value="dark">dark</option>
   		<option value="classy">classy</option>
   		<option value="nature">nature</option>
 			<option value="floral">floral</option>
-		</select>
+		</StyledSelect>
   )
 }
 
