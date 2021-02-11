@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import TaskList from './components/TaskList';
 import { ThemeProvider } from 'styled-components';
-import { originalTheme, lightTheme, darkTheme, classyTheme } from './styles/theme';
+import { originalTheme, lightTheme, darkTheme, classyTheme, natureTheme, floralTheme } from './styles/theme';
 import { GlobalStyles } from './styles/global';
 
 function App() {
@@ -20,17 +20,17 @@ function App() {
     case 'dark': 
       themeObject = darkTheme;
       break;
-    case 'nature':
-      themeObject = darkTheme;
-      break;
-    case 'floral':
-      themeObject = darkTheme;
-      break;
     case 'classy':
       themeObject = classyTheme;
       break;
+    case 'nature':
+      themeObject = natureTheme;
+      break;
+    case 'floral':
+      themeObject = floralTheme;
+      break;
     default:
-      themeObject = originalTheme;
+      themeObject = lightTheme;
   }
 
   return (

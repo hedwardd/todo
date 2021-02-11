@@ -1,31 +1,32 @@
 import styled from 'styled-components';
 
 export const TaskListWrapper = styled.div`
-  width: 50vw;
+  width: 80%;
   height: auto;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 2vw;
-  margin-bottom: 2vw;
+  margin: auto;
+  margin-top: 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  border-radius: 12px;
+  padding: 2vw;
+	padding-bottom: 10vw;
+	border-radius: 4px;
+  backdrop-filter: blur(4px);
   background: ${({ theme }) => theme.listBackground};
-  backdrop-filter: ${({ theme }) => theme.listBackdropFilter};
+
+  @media (min-width: 768px){
+    width: 60%;
+    padding-bottom: 2vw;
+  }
 `;
 
 export const StyledH1 = styled.h1`
-font-style: normal;
-font-weight: normal;
-font-size: 4vw;
-text-align: center;
-text-shadow: 1px 1px 1px #000000;
-margin-bottom: 0vw;
-font-family: ${({ theme }) => theme.fontFamily};
-text-shadow: ${({ theme }) => theme.headingTextShadow};
-color: ${({ theme }) => theme.headingColor};
+  font-style: normal;
+  font-weight: normal;
+  font-size: 8vw;
+  margin-bottom: 0vw;
+  text-shadow: 1px 1px 1px ${({ theme }) => theme.headingTextShadowColor};
+  color: ${({ theme }) => theme.headingColor};
 `
 
 export const H2Wrapper = styled.div`
@@ -36,14 +37,11 @@ export const H2Wrapper = styled.div`
 `;
 
 export const StyledH2 = styled.h2`
-font-style: normal;
-font-weight: normal;
-font-size: 2.5vw;
-text-align: center;
-text-shadow: 1px 1px 1px #000000;
-font-family: ${({ theme }) => theme.fontFamily};
-color: ${({ theme }) => theme.headingColor};
-text-shadow: ${({ theme }) => theme.headingTextShadow};
+  font-size: 5.5vw;
+  font-style: normal;
+  font-weight: normal;
+  color: ${({ theme }) => theme.subHeadingColor || theme.headingColor};
+  text-shadow: .5px .5px 1px ${({ theme }) => theme.subHeadingTextShadowColor || theme.headingTextShadowColor};
 `;
 
 export const StyledUL = styled.ul`
@@ -62,45 +60,49 @@ export const TaskListItem = styled.li`
   justify-content: space-around;
 `;
 
-export const TaskNameWrapper = styled.div`
-  width: 14vw;
-  height: 4vw;
-  background: rgba(242, 253, 248, 0.6);
-  border: 2px solid #D7FFDD;
-  backdrop-filter: blur(4px);
-  border-radius: 10px;
-  text-align: center;
+const TaskInfoBox = styled.div`
+  display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 0;
-`
-
-export const TaskDateWrapper = styled.div`
-  width: 10vw;
-  height: 4vw;
-  background: rgba(242, 253, 248, 0.6);
-  border: 2px solid #EC8B83;
-  backdrop-filter: blur(4px);
-  border-radius: 10px;
+  min-height: 60px;
+  margin: 10px 10px;
+  padding: 0px 5px;
   text-align: center;
-  align-items: center;
-  margin-top: 0;
-  margin-bottom: 2vw;
+  font-size: 16px;
+  border-radius: 4px;
+  text-shadow: .2px .2px 1px ${({ theme }) => theme.taskTextShadowColor};
+  background-color: ${({ theme }) => theme.taskBackgroundColor};
+  @media (min-width: 768px){
+    font-size: 20px;
+  }
 `;
 
-export const DoneButton = styled.button`
-  width: 10vw;
-  height: 4vw;
-  background: rgba(242, 253, 248, 0.6);
-  border: 2px solid #9369A8;
-  backdrop-filter: blur(4px);
-  border-radius: 10px;
-  text-align: center;
-  align-items: center;
-  margin-top: 0;
-  margin-bottom: 2vw;
+export const TaskNameWrapper = styled(TaskInfoBox)`
+  width: 50%;
+  color: ${({ theme }) => theme.taskNameColor};
+  border: 1px solid ${({ theme }) => theme.taskNameBorderColor};
+`
+
+export const TaskDateWrapper = styled(TaskInfoBox)`
+  width: 33%;
+  color: ${({ theme }) => theme.taskDateColor};
+  border: 1px solid ${({ theme }) => theme.taskDateBorderColor};
+`;
+
+export const DoneButton = styled(TaskInfoBox)`
+  width: 16.7%;
+  color: ${({ theme }) => theme.doneButtonColor};
+  border: 1px solid ${({ theme }) => theme.doneButtonBorderColor};
 `;
 
 export const StyledSelect = styled.select`
   align-self: flex-end;
+  font-size: 3vw;
+	width: 16vw;
+	top: 2vw;
+	margin-bottom: 1vw;
+	border-radius: 4px;
+	height: 6vw;
+	color: #ebebeb;
+  background-color: #696969;
 `;

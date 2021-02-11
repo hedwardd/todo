@@ -29,15 +29,15 @@ const TaskList = (props) => {
 
       <H2Wrapper>
         <StyledH2>
-          item
+          Item
         </StyledH2>
 
         <StyledH2>
-          date
+          Date
         </StyledH2>
 
         <StyledH2>
-          done?
+          Status
         </StyledH2>
       </H2Wrapper>
       
@@ -57,9 +57,10 @@ const TaskList = (props) => {
             </TaskDateWrapper>
 
             <DoneButton
+              as="button"
               onClick={() => handleUpdateTask(task.id, { isDone: true })}
             >
-              Done?
+              Done
             </DoneButton>
           </TaskListItem>
         )

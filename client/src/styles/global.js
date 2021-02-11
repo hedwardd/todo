@@ -10,18 +10,21 @@ export const GlobalStyles = createGlobalStyle`
   *,
   *::after,
   *::before {
-    box-sizing: border-box;
+    // box-sizing: border-box;
   }
 
   body {
     background-image: ${({ theme }) => theme.backgroundImage};
     background-color: ${({ theme }) => theme.backgroundColor};
-    background-size: 100vw;
-    background-repeat: no-repeat;
-    
-
+    background-size: cover;
+    background-attachment: fixed;
     font-family: ${({ theme }) => theme.fontFamily};
+    font-style: normal;
+    font-weight: normal;
     transition: all 0.25s linear;
-    
+
+    @media (min-width: 768px){
+      background-image: ${({ theme }) => theme.largeBackgroundImage};
+    }
   }
 `
