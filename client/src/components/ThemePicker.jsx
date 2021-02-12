@@ -17,7 +17,6 @@ const ThemePicker = (props) => {
 
   return (
     <StyledSelect value={theme} onChange={handleChange}>
-      <option value="original">original</option>
   		<option value="light">light</option>
   		<option value="dark">dark</option>
   		<option value="classy">classy</option>

@@ -1,36 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import TaskList from './components/TaskList';
 import { ThemeProvider } from 'styled-components';
-import { originalTheme, lightTheme, darkTheme, classyTheme, natureTheme, floralTheme } from './styles/theme';
+import WebFont from 'webfontloader';
+import TaskList from './components/TaskList';
+import themes from './styles/themes';
 import { GlobalStyles } from './styles/global';
+
+const fontFamilies = Object.values(themes).map(e => e.fontFamily).filter(e => !!e);
 
 function App() {
 
   const { theme } = useSelector(state => state.theme);
-  let themeObject;
 
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: fontFamilies,
+      }
+    })
+  })
+
+  let themeObject;
   switch (theme) {
-    case 'original':
-      themeObject = originalTheme;
-      break;
     case 'light':
-      themeObject = lightTheme;
+      themeObject = themes.light;
       break;
     case 'dark': 
-      themeObject = darkTheme;
+      themeObject = themes.dark;
       break;
     case 'classy':
-      themeObject = classyTheme;
+      themeObject = themes.classy;
       break;
     case 'nature':
-      themeObject = natureTheme;
+      themeObject = themes.nature;
       break;
     case 'floral':
-      themeObject = floralTheme;
+      themeObject = themes.floral;
       break;
     default:
-      themeObject = lightTheme;
+      themeObject = themes.classy;
   }
 
   return (

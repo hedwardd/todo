@@ -1,17 +1,25 @@
-export const originalTheme = {
-  backgroundImage: 'url("https://www.jetsetter.com/wp-content/uploads/sites/7/2018/04/SnqAHi_W.jpeg")',
-  headingColor: '#CD4A77',
-  fontFamily: 'Henny Penny',
-}
-
-export const lightTheme = {
+exports.light = {
   backgroundColor: '#fffeed',
+  listBackground: 'rgba(148, 148, 148, 0.3)',
+  fontFamily: 'Actor',
+  headingColor: '#d1fbff',
+  headingTextShadowColor: '#ebebeb',
+  subHeadingColor: '#696969',
+  subHeadingTextShadowColor: '#ebebeb',
+  taskTextShadowColor: '#ebebeb',
+  taskBackgroundColor: 'rgba(209, 251, 255, .7)',
+  taskNameColor: '#696969',
+  taskNameBorderColor: '#ffffc4',
+  taskDateColor: '#696969',
+  taskDateBorderColor: '#fefff0',
+  doneButtonColor: '#696969',
+  doneButtonBorderColor: '#ffffc4',
 }
 
-export const darkTheme = {
+exports.dark = {
   backgroundColor: '#000000',
   listBackground: 'rgba(235, 235, 235, 0.2)',
-  fontFamily: 'Arial',
+  fontFamily: 'Actor',
   headingColor: '#f2ddce',
   headingTextShadowColor: '#f2ddce',
   taskTextShadowColor: '#ebebeb',
@@ -24,12 +32,12 @@ export const darkTheme = {
   doneButtonBorderColor: '#ffffc4',
 }
 
-export const classyTheme = {
+exports.classy = {
   backgroundImage: 'url("https://i.postimg.cc/Kzk0KkMp/IMG-2284-1-1.png")',
-  largeBackgroundImage: 'url("https://i.postimg.cc/KYfXxqcS/IMG-2284-1-2.png"',
+  largeBackgroundImage: 'url("https://i.postimg.cc/KYfXxqcS/IMG-2284-1-2.png")',
   backgroundColor: '',
   listBackground: 'rgba(219, 140, 159, 0.3)',
-  fontFamily: 'Times New Roman',
+  fontFamily: 'Italiana',
   headingColor: '#696969',
   headingTextShadowColor: '#f0e4e7',
   subHeadingColor: '#cdf7d9',
@@ -44,11 +52,11 @@ export const classyTheme = {
   doneButtonBorderColor: '#cdf7d9',
 }
 
-export const natureTheme = {
+exports.nature = {
   backgroundImage: 'url("https://i.postimg.cc/MZRzLjvy/IMG-5228-1.png")',
   largeBackgroundImage: 'url("https://i.postimg.cc/x8rnC9FJ/IMG-5228-1-1.png")',
   listBackground: 'rgba(115, 115, 115, 0.3)',
-  fontFamily: 'neucha, Arial',
+  fontFamily: 'Neucha',
   headingColor: '#5a8561',
   headingTextShadowColor: '#ebebeb',
   subHeadingColor: '#8f522c',
@@ -63,10 +71,10 @@ export const natureTheme = {
   doneButtonBorderColor: '#949151',
 }
 
-export const floralTheme = {
+exports.floral = {
   backgroundImage: 'url("https://i.postimg.cc/rpdsCtgK/IMG-5035.jpg")',
   listBackground: 'rgba(247, 247, 247, 0.3)',
-  fontFamily: 'La Belle Aurore, Times New Roman, Arial',
+  fontFamily: 'La Belle Aurore',
   headingColor: '#675f7d',
   headingTextShadowColor: '#ebebeb',
   subHeadingColor: '#9e6582',

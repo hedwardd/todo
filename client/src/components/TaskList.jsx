@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getTasks, updateTask} from '../actions/task';
 import NewTaskForm from './NewTaskForm';
 import ThemePicker from './ThemePicker';
-import { TaskListWrapper, StyledH1, H2Wrapper, StyledH2, StyledUL, TaskListItem, TaskNameWrapper, TaskDateWrapper, DoneButton } from '../styles/taskList';
+import { TaskListWrapper, ListHeading, SubheadingWrapper, ItemSubheading, DateSubheading, StatusSubheading, StyledUL, TaskListItem, TaskNameWrapper, TaskDateWrapper, StyledMessage, DoneButton } from '../styles/taskList';
 
 const TaskList = (props) => {
 
@@ -23,28 +23,28 @@ const TaskList = (props) => {
   return (
     <TaskListWrapper>
 
-      <StyledH1>
+      <ListHeading>
         My To-dos
-      </StyledH1>
+      </ListHeading>
 
-      <H2Wrapper>
-        <StyledH2>
+      <SubheadingWrapper>
+        <ItemSubheading>
           Item
-        </StyledH2>
+        </ItemSubheading>
 
-        <StyledH2>
+        <DateSubheading>
           Date
-        </StyledH2>
+        </DateSubheading>
 
-        <StyledH2>
+        <StatusSubheading>
           Status
-        </StyledH2>
-      </H2Wrapper>
+        </StatusSubheading>
+      </SubheadingWrapper>
       
       <StyledUL>
         {tasks.map((task) => task.isDone ? "" : (
-          <TaskListItem className="task" key={task.id}>
-            <TaskNameWrapper className="items">
+          <TaskListItem key={task.id}>
+            <TaskNameWrapper>
               <p>
                 {task.name}
               </p>
@@ -57,7 +57,7 @@ const TaskList = (props) => {
             </TaskDateWrapper>
 
             <DoneButton
-              as="button"
+              as="checkbox"
               onClick={() => handleUpdateTask(task.id, { isDone: true })}
             >
               Done
@@ -71,9 +71,9 @@ const TaskList = (props) => {
       </StyledUL>
 
       {message && (
-        <p>
+        <StyledMessage>
           {message}
-        </p>
+        </StyledMessage>
       )}
 
       <ThemePicker />
