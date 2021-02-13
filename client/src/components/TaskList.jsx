@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getTasks, updateTask} from '../actions/task';
 import NewTaskForm from './NewTaskForm';
 import ThemePicker from './ThemePicker';
-import { TaskListWrapper, ListHeading, SubheadingWrapper, ItemSubheading, DateSubheading, StatusSubheading, StyledUL, TaskListItem, TaskNameWrapper, TaskDateWrapper, StyledMessage, DoneButton } from '../styles/taskList';
+import { TaskListWrapper, ListHeading, SubheadingSection, ItemSubheading, DateSubheading, StatusSubheading, StyledUL, TaskListItem, NameBoxWrapper, DateBoxWrapper, DoneBoxWrapper, NameBox, DateBox, StyledMessage, DoneBox, CreditsWrapper } from '../styles/taskList';
 
 const TaskList = (props) => {
 
@@ -27,7 +27,7 @@ const TaskList = (props) => {
         My To-dos
       </ListHeading>
 
-      <SubheadingWrapper>
+      <SubheadingSection>
         <ItemSubheading>
           Item
         </ItemSubheading>
@@ -39,29 +39,33 @@ const TaskList = (props) => {
         <StatusSubheading>
           Status
         </StatusSubheading>
-      </SubheadingWrapper>
+      </SubheadingSection>
       
       <StyledUL>
         {tasks.map((task) => task.isDone ? "" : (
           <TaskListItem key={task.id}>
-            <TaskNameWrapper>
-              <p>
-                {task.name}
-              </p>
-            </TaskNameWrapper>
+            <NameBoxWrapper>
+              <NameBox>
+                <p>
+                  {task.name}
+                </p>
+              </NameBox>
+            </NameBoxWrapper>
 
-            <TaskDateWrapper>
-              <p>
-                {new Date(task.dueDate).toLocaleDateString()}
-              </p>
-            </TaskDateWrapper>
+            <DateBoxWrapper>
+              <DateBox>
+                <p>
+                  {new Date(task.dueDate).toLocaleDateString()}
+                </p>
+              </DateBox>
+            </DateBoxWrapper>
 
-            <DoneButton
-              as="checkbox"
-              onClick={() => handleUpdateTask(task.id, { isDone: true })}
-            >
-              Done
-            </DoneButton>
+            <DoneBoxWrapper>
+              <DoneBox
+                as="button"
+                onClick={() => handleUpdateTask(task.id, { isDone: true })}
+              />
+            </DoneBoxWrapper>
           </TaskListItem>
         )
       )}
@@ -77,6 +81,10 @@ const TaskList = (props) => {
       )}
 
       <ThemePicker />
+
+      <CreditsWrapper>
+        <p>Credits:<br/>Themes and design by <a href="http://www.helenthum.com/">Helen Thum</a></p>
+      </CreditsWrapper>
 
     </TaskListWrapper>
   );

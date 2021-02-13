@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTask } from '../actions/task';
-import { TaskListItem, TaskNameWrapper, TaskDateWrapper, DoneButton } from '../styles/taskList';
+import { TaskListItem, NameBoxWrapper, DateBoxWrapper, DoneBoxWrapper, NameBox, DateBox, DoneBox } from '../styles/taskList';
 
 
 const NewTaskForm = (props) => {
@@ -29,9 +29,11 @@ const NewTaskForm = (props) => {
     dispatch(addTask(name, dueDate))
       .then(() => {
         setIsLoading(false);
+        setFormValues({ name: '', dueDate: '' });
       })
       .catch(() => {
         setIsLoading(false);
+        setFormValues({ name: '', dueDate: '' });
       });;
   }
 
@@ -41,39 +43,45 @@ const NewTaskForm = (props) => {
       onSubmit={(event) => handleSubmit(event)}
     >
       
-      <TaskNameWrapper
-        as="input"
-        type="text"
-        required
-        id="name"
-        name="name"
-        label="Name"
-        value={formValues.name}
-        onChange={(event) => handleChange(event)} 
-      />
-    
-      <TaskDateWrapper
-        as="input"
-        type="date"
-        required
-        id="dueDate"
-        name="dueDate"
-        label="dueDate"
-        value={formValues.dueDate}
-        onChange={(event) => handleChange(event)} 
-      />      
-
-      {isLoading ? (
-        <DoneButton disabled="true" >
-          <p>Loading...</p>
-        </DoneButton>
-      ) : (
-        <DoneButton
+      <NameBoxWrapper>
+        <NameBox
           as="input"
-          type="submit"
-          value="Add"
+          type="text"
+          required
+          id="name"
+          name="name"
+          label="Name"
+          value={formValues.name}
+          onChange={(event) => handleChange(event)} 
         />
-      )}
+      </NameBoxWrapper>
+    
+      <DateBoxWrapper>
+        <DateBox
+          as="input"
+          type="date"
+          required
+          id="dueDate"
+          name="dueDate"
+          label="dueDate"
+          value={formValues.dueDate}
+          onChange={(event) => handleChange(event)} 
+        />
+      </DateBoxWrapper>    
+
+      <DoneBoxWrapper>
+        {isLoading ? (
+          <DoneBox disabled="true" >
+            <p>...</p>
+          </DoneBox>
+        ) : (
+          <DoneBox
+            as="button"
+          >
+            +
+          </DoneBox>
+        )}
+      </DoneBoxWrapper>
     </TaskListItem>
   )
 }

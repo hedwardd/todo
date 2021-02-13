@@ -2,154 +2,180 @@ import styled from 'styled-components';
 import device from './device';
 
 export const TaskListWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 80%;
-  height: auto;
-  margin: auto;
-  margin-top: 5vw;
-  margin-bottom: 5vw;
-  padding: 2vw;
-	border-radius: 4px;
-  backdrop-filter: blur(4px);
-  background: ${({ theme }) => theme.listBackground};
-  @media ${device.tablet} {
-    width: 60%;
-  }
-  @media ${device.laptop} {
-    width: 40%;
-    margin-top: 2vw;
-    margin-bottom: 2vw;
-  }
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 90%;
+height: auto;
+margin: auto;
+margin-top: 5vw;
+margin-bottom: 5vw;
+border-radius: 4px;
+backdrop-filter: blur(4px);
+background: ${({ theme }) => theme.listBackground};
+@media ${device.tablet} {
+  width: 60%;
+}
+@media ${device.laptop} {
+  width: 40%;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+}
 `;
 
 export const ListHeading = styled.h1`
-  font-style: normal;
-  font-weight: normal;
-  font-size: 8vw;
-  margin-bottom: 0vw;
-  text-shadow: 1px 1px 1px ${({ theme }) => theme.headingTextShadowColor};
-  color: ${({ theme }) => theme.headingColor};
-  @media ${device.tablet} {
-    font-size: 6vw;
-  }
-  @media ${device.laptop} {
-    font-size: 5vw;
-  }
+font-style: normal;
+font-weight: normal;
+font-size: 8vw;
+margin-bottom: 3vh;
+text-shadow: 1px 1px 1px ${({ theme }) => theme.headingTextShadowColor};
+color: ${({ theme }) => theme.headingColor};
+@media ${device.tablet} {
+  font-size: 6vw;
+}
+@media ${device.laptop} {
+  font-size: 5vw;
+}
 `
 
-export const SubheadingWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+export const SubheadingSection = styled.div`
+width: 90%;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
 `;
 
-const Subheading = styled.h2`
-  text-align: center;
-  font-size: 5.5vw;
-  font-style: normal;
-  font-weight: normal;
-  color: ${({ theme }) => theme.subHeadingColor || theme.headingColor};
-  text-shadow: .5px .5px 1px ${({ theme }) => theme.subHeadingTextShadowColor || theme.headingTextShadowColor};
-  @media ${device.tablet} {
-    font-size: 4vw;
-  }
-  @media ${device.laptop} {
-    font-size: 2.5vw;
-  }
+const SubheadingWrapper = styled.div`
+text-align: center;
+font-size: 5vw;
+font-style: normal;
+font-weight: normal;
+margin-bottom: 0;
+padding-bottom: 0;
+color: ${({ theme }) => theme.subHeadingColor || theme.headingColor};
+text-shadow: .5px .5px 1px ${({ theme }) => theme.subHeadingTextShadowColor || theme.headingTextShadowColor};
+@media ${device.tablet} {
+  font-size: 3vw;
+}
+@media ${device.laptop} {
+  font-size: 2vw;
+}
 `;
 
-export const ItemSubheading = styled(Subheading)`
-  width: 32vw;
-  // width: 45%;
-  // flex-grow: 3;
+export const ItemSubheading = styled(SubheadingWrapper)`
+width: 50%;
 `;
 
-export const DateSubheading = styled(Subheading)`
-  width: 28vw;
-  // width: 30%;
-  // flex-grow: 2;
+export const DateSubheading = styled(SubheadingWrapper)`
+width: 33%;
 `;
 
-export const StatusSubheading = styled(Subheading)`
-  width: 12vw;
-  // width: 15%;
-  // flex-grow: 1;
+export const StatusSubheading = styled(SubheadingWrapper)`
+width: 16.7%;
 `;
 
 export const StyledUL = styled.ul`
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: auto;
-	justify-content: center;
-	margin-left: -5vw;
+list-style-type: none;
+width: 90%;
+margin-top: 0;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 0;
 `;
 
 export const TaskListItem = styled.li`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
 `;
 
-const TaskInfoBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  // min-height: 30px;
-  margin: 10px 10px;
-  padding: 0px 5px;
-  text-align: center;
-  font-size: 16px;
-  border-radius: 4px;
-  text-shadow: .2px .2px 1px ${({ theme }) => theme.taskTextShadowColor};
-  background-color: ${({ theme }) => theme.taskBackgroundColor};
-  @media ${device.tablet} {
-    font-size: 20px;
-  }
+const BoxWrapper = styled.div`
+// display: flex;
+// justify-content: center;
 `;
 
-export const TaskNameWrapper = styled(TaskInfoBox)`
-  width: 36vw;
-  // width: 50%;
-  color: ${({ theme }) => theme.taskNameColor};
-  border: 1px solid ${({ theme }) => theme.taskNameBorderColor};
+export const NameBoxWrapper = styled(BoxWrapper)`
+width: 50%;
+`;
+
+export const DateBoxWrapper = styled(BoxWrapper)`
+width: 33%;
+`;
+
+export const DoneBoxWrapper = styled(BoxWrapper)`
+width: 16.7%;
+`;
+
+const TaskBox = styled.div`
+min-height: 8vw;
+font-size: 15px;
+margin: 10px auto;
+width: 90%;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+border-radius: 4px;
+text-shadow: .2px .2px 1px ${({ theme }) => theme.taskTextShadowColor};
+background-color: ${({ theme }) => theme.taskBackgroundColor};
+@media ${device.tablet} {
+  min-height: 3vw;
+}
+`;
+
+export const NameBox = styled(TaskBox)`
+color: ${({ theme }) => theme.taskNameColor};
+border: 1px solid ${({ theme }) => theme.taskNameBorderColor};
 `
 
-export const TaskDateWrapper = styled(TaskInfoBox)`
-  width: 20vw;
-  // width: 33%;
-  color: ${({ theme }) => theme.taskDateColor};
-  border: 1px solid ${({ theme }) => theme.taskDateBorderColor};
+export const DateBox = styled(TaskBox)`
+color: ${({ theme }) => theme.taskDateColor};
+border: 1px solid ${({ theme }) => theme.taskDateBorderColor};
+::-webkit-inner-spin-button,
+::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
 `;
 
-export const DoneButton = styled(TaskInfoBox)`
-  // width: 8vw;
-  // height: 8vw;
-  // width: 16.7%;
-  padding: 10px;
-  color: ${({ theme }) => theme.doneButtonColor};
-  border: 1px solid ${({ theme }) => theme.doneButtonBorderColor};
+export const DoneBox = styled(TaskBox)`
+width: 8vw;
+height: 8vw;
+color: ${({ theme }) => theme.doneButtonColor};
+border: 1px solid ${({ theme }) => theme.doneButtonBorderColor};
+@media ${device.tablet} {
+  width: 3vw;
+  height: 3vw;
+}
 `;
 
 export const StyledMessage = styled.p`
-  color: ${({ theme }) => theme.subHeadingColor || theme.headingColor};
+color: ${({ theme }) => theme.subHeadingColor || theme.headingColor};
 `;
 
 export const StyledSelect = styled.select`
-  align-self: flex-end;
-  font-size: 16px;
-  padding: 0.5vw;
-	top: 2vw;
-	margin-bottom: 1vw;
-	border-radius: 4px;
-	color: #ebebeb;
-  background-color: #696969;
-  @media ${device.tablet} {
-    font-size: 20px;
-  }
+align-self: flex-end;
+font-size: 16px;
+padding: 0.5vw;
+top: 2vw;
+margin: auto 5%;
+border-radius: 4px;
+color: #ebebeb;
+background-color: #696969;
+@media ${device.tablet} {
+  font-size: 20px;
+}
+`;
+
+export const CreditsWrapper = styled.div`
+margin: auto 5%;
+align-self: flex-start;
+color: ${({ theme }) => theme.creditsColor || theme.doneButtonColor};
+a {
+  color: inherit;
+}
 `;
