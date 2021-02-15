@@ -24,7 +24,7 @@ const TaskList = (props) => {
     <TaskListWrapper>
 
       <ListHeading>
-        My To-dos
+        My To-Dos
       </ListHeading>
 
       <SubheadingSection>
