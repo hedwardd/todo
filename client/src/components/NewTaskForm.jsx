@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTask } from '../actions/task';
-import { TaskListItem, NameBoxWrapper, DateBoxWrapper, DoneBoxWrapper, NameBox, DateBox, DoneBox } from '../styles/taskList';
+import { TaskListItem, NameBoxWrapper, DateBoxWrapper, DoneBoxWrapper, NameBox, DoneBox } from '../styles/taskList';
+import { DateInput } from '../styles/newTaskForm';
 
 
 const NewTaskForm = (props) => {
@@ -57,7 +58,7 @@ const NewTaskForm = (props) => {
       </NameBoxWrapper>
     
       <DateBoxWrapper>
-        <DateBox
+        <DateInput
           as="input"
           type="date"
           required
