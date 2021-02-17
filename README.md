@@ -77,8 +77,10 @@ Project Link: [Source](https://github.com/hedwardd/todo), [Live](https://todo-hd
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
+* [Themes by Helen Thum](http://helenthum.com/)
 * [Sequelize](https://sequelize.org/)
 * [node-postgres](https://github.com/brianc/node-postgres)
+* [styled-components](styled-components.com)
 * [dotenv](https://github.com/motdotla/dotenv)
 * [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 
