@@ -2,7 +2,13 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import WebFont from 'webfontloader';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 import TaskList from './components/TaskList';
+import HomeScreen from './components/HomeScreen';
 import themes from './styles/themes';
 import { GlobalStyles } from './styles/global';
 
@@ -42,10 +48,20 @@ function App() {
   }
 
   return (
-    <ThemeProvider theme={themeObject}>
-      <GlobalStyles />
-      <TaskList />
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={themeObject}>
+        <GlobalStyles />
+        <Switch>
+          <Route path="/list">
+            <TaskList />
+          </Route>
+          
+          <Route path="/">
+            <HomeScreen />
+          </Route>
+        </Switch>
+      </ThemeProvider>
+    </Router>
   );
 }
 
