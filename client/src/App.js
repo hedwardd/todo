@@ -10,7 +10,7 @@ import {
 import TaskList from './components/TaskList';
 import HomeScreen from './components/HomeScreen';
 import themes from './styles/themes';
-import { GlobalStyles } from './styles/global';
+import { TaskListGlobalStyles } from './styles/TaskList';
 
 const fontFamilies = Object.values(themes).map(e => e.fontFamily).filter(e => !!e);
 
@@ -49,18 +49,18 @@ function App() {
 
   return (
     <Router>
-      <ThemeProvider theme={themeObject}>
-        <GlobalStyles />
         <Switch>
           <Route path="/list">
-            <TaskList />
+            <ThemeProvider theme={themeObject}>
+              <TaskListGlobalStyles />
+              <TaskList />
+            </ThemeProvider>
           </Route>
           
           <Route path="/">
             <HomeScreen />
           </Route>
         </Switch>
-      </ThemeProvider>
     </Router>
   );
 }

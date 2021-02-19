@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import device from './device';
-import { DateBox } from '../styles/taskList';
+import { DateBox } from './TaskList';
 
 export const DateInput = styled(DateBox)`
 font-size: 10px;

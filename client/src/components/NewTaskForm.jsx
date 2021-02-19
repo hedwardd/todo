@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTask } from '../actions/task';
-import { TaskListItem, NameBoxWrapper, DateBoxWrapper, DoneBoxWrapper, NameBox, DoneBox } from '../styles/taskList';
-import { DateInput } from '../styles/newTaskForm';
+import { TaskListItem, NameBoxWrapper, DateBoxWrapper, DoneBoxWrapper, NameBox, DoneBox } from '../styles/TaskList';
+import { DateInput } from '../styles/NewTaskForm';
 
 
 const NewTaskForm = (props) => {
