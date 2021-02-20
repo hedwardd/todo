@@ -4,7 +4,6 @@ const Op = db.Sequelize.Op;
 
 // Create and Save a new List
 exports.create = (req, res) => {
-  console.log(req.body);
   // Validate request
   if (!req.body.alias) {
     res.json({
@@ -12,6 +11,8 @@ exports.create = (req, res) => {
     });
     return;
   }
+
+  // TO-DO: Validate alias
 
   // Create a List
   const list = {
@@ -35,6 +36,8 @@ exports.create = (req, res) => {
 exports.checkAlias = (req, res) => {
   const alias = req.params.alias;
 
+  // TO-DO: Validate alias
+
   List.findOne({ where: { alias: alias } })
     .then(data => {
       if (data === null) {
@@ -56,20 +59,20 @@ exports.checkAlias = (req, res) => {
     });
 };
 
-// Get a list with tasks
-exports.getListWithTasksByAlias = (req, res) => {
-  const alias = req.params.alias;
+// // Get a list with tasks
+// exports.getListWithTasksByAlias = (req, res) => {
+//   const alias = req.params.alias;
 
-  List.findOne({ where: { alias: alias } }, { include: "tasks" })
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "Error retrieving List with id=" + id
-      });
-    });
-};
+//   List.findOne({ where: { alias: alias } }, { include: "tasks" })
+//     .then(data => {
+//       res.send(data);
+//     })
+//     .catch(err => {
+//       res.status(500).send({
+//         message: "Error retrieving List with id=" + id
+//       });
+//     });
+// };
 
 // Retrieve all Lists from the database.
 exports.findAll = (req, res) => {
@@ -89,27 +92,27 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single List with an id
+// Find a single List by its alias
 exports.findOne = (req, res) => {
-  const id = req.params.id;
+  const alias = req.params.alias;
 
-  List.findByPk(id)
+  List.findOne({ where: { alias: alias }, include: ["tasks"] })
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error retrieving List with id=" + id
+        message: "Error retrieving List with alias=" + alias
       });
     });
 };
 
-// Update a List by the id in the request
+// Update a List by the alias in the request
 exports.update = (req, res) => {
-  const id = req.params.id;
+  const alias = req.params.alias;
 
   List.update(req.body, {
-    where: { id: id }
+    where: { alias: alias }
   })
     .then(num => {
       if (num == 1) {
@@ -118,23 +121,23 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update List with id=${id}. Maybe List was not found or req.body is empty!`
+          message: `Cannot update List with alias=${alias}. Maybe List was not found or req.body is empty!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating List with id=" + id
+        message: "Error updating List with alias=" + alias
       });
     });
 };
 
-// Delete a List with the specified id in the request
+// Delete a List with the specified alias in the request
 exports.delete = (req, res) => {
-  const id = req.params.id;
+  const alias = req.params.alias;
 
   List.destroy({
-    where: { id: id }
+    where: { alias: alias }
   })
     .then(num => {
       if (num == 1) {
@@ -143,16 +146,81 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete List with id=${id}. Maybe List was not found!`
+          message: `Cannot delete List with alias=${alias}. Maybe List was not found!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete List with id=" + id
+        message: "Could not delete List with alias=" + alias
       });
     });
 };
+
+// // Find a single List with an id
+// exports.findOne = (req, res) => {
+//   const id = req.params.id;
+
+//   List.findByPk(id)
+//     .then(data => {
+//       res.send(data);
+//     })
+//     .catch(err => {
+//       res.status(500).send({
+//         message: "Error retrieving List with id=" + id
+//       });
+//     });
+// };
+
+// // Update a List by the id in the request
+// exports.update = (req, res) => {
+//   const id = req.params.id;
+
+//   List.update(req.body, {
+//     where: { id: id }
+//   })
+//     .then(num => {
+//       if (num == 1) {
+//         res.send({
+//           message: "List was updated successfully."
+//         });
+//       } else {
+//         res.send({
+//           message: `Cannot update List with id=${id}. Maybe List was not found or req.body is empty!`
+//         });
+//       }
+//     })
+//     .catch(err => {
+//       res.status(500).send({
+//         message: "Error updating List with id=" + id
+//       });
+//     });
+// };
+
+// // Delete a List with the specified id in the request
+// exports.delete = (req, res) => {
+//   const id = req.params.id;
+
+//   List.destroy({
+//     where: { id: id }
+//   })
+//     .then(num => {
+//       if (num == 1) {
+//         res.send({
+//           message: "List was deleted successfully!"
+//         });
+//       } else {
+//         res.send({
+//           message: `Cannot delete List with id=${id}. Maybe List was not found!`
+//         });
+//       }
+//     })
+//     .catch(err => {
+//       res.status(500).send({
+//         message: "Could not delete List with id=" + id
+//       });
+//     });
+// };
 
 // Delete all Lists from the database.
 exports.deleteAll = (req, res) => {
