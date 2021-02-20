@@ -5,7 +5,7 @@ const getTasks = () => {
 };
 
 const addTask = (name, dueDate) => {
-  return fetch('/api/tasks', {
+  return fetch(API_URL, {
     method: 'POST',
     body: JSON.stringify({ name, dueDate }),
     headers: { 'Content-Type': 'application/json' },

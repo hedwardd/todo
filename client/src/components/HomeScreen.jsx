@@ -1,40 +1,70 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { checkAliasAvailability } from '../actions/list';
 
 const HomeScreen = (props) => {
 
-  const [isCreating, setIsCreating] = useState(null);
+  const [selectedCreate, setSelectedCreate] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  
   const [aliasInput, setAliasInput] = useState("");
 
-  const headerText = isCreating
+  const { toCheck, isAliasAvailable } = useSelector(state => state.list);
+  const { message } = useSelector(state => state.message);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      if (aliasInput.length > 2)
+        dispatch(checkAliasAvailability(aliasInput))
+          .then(() => {
+            setIsLoading(false);
+          })
+          .catch(() => {
+            setIsLoading(false);
+          });
+    }, 500);
+
+    return () => {clearTimeout(timer)};
+  }, [aliasInput]);
+
+  const handleChange = ({ target }) => {
+    const { value } = target;
+    setAliasInput(value);
+  };
+
+  const headerText = selectedCreate
     ? "Pick an alias..."
     : "Enter your alias...";
 
-  const buttonText = isCreating
+  const buttonText = selectedCreate
     ? "Create"
     : "Go to List";
 
   return (
     <div>
-      {isCreating == null ? (
+      {selectedCreate == null ? (
         <div>
           <div>
             <h2>Create New List</h2>
             <button
-              onClick={() => setIsCreating(true)}
+              onClick={() => setSelectedCreate(true)}
             >Create</button>
           </div>
           
           <div>
             <h2>Use Existing</h2>
             <button
-              onClick={() => setIsCreating(false)}
+              onClick={() => setSelectedCreate(false)}
             >Search</button>
           </div>
         </div>
       ) : (
         <div>
           <button
-            onClick={() => setIsCreating(null)}
+            onClick={() => setSelectedCreate(null)}
           >
             Back
           </button>
@@ -45,11 +75,19 @@ const HomeScreen = (props) => {
 
           <input
             placeholder="my-list"
+            value={aliasInput}
+            onChange={handleChange}
           />
 
-          <button disabled>
+          <button
+          disabled={isLoading ? true : !isAliasAvailable}
+          >
             {buttonText}
           </button>
+
+          {!isLoading && message && (
+            <p>{message}</p>
+          )}
         </div>
       )}
     </div>
