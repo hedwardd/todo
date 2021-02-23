@@ -7,8 +7,8 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import TaskList from './components/TaskList';
-import HomeScreen from './components/HomeScreen';
+import TaskList from './components/TaskList/TaskList';
+import HomeScreen from './components/HomeScreen/HomeScreen';
 import themes from './styles/themes';
 import { TaskListGlobalStyles } from './styles/TaskList';
 
@@ -50,7 +50,7 @@ function App() {
   return (
     <Router>
         <Switch>
-          <Route path="/list">
+          <Route path="/tasks/:alias">
             <ThemeProvider theme={themeObject}>
               <TaskListGlobalStyles />
               <TaskList />

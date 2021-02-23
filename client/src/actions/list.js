@@ -3,6 +3,8 @@ import {
   CHECK_ALIAS_AVAILABILITY_FAIL,
   ADD_LIST_SUCCESS,
   ADD_LIST_FAIL,
+  CHECK_EXISTING_ALIAS_SUCCESS,
+  CHECK_EXISTING_ALIAS_FAIL,
   SET_MESSAGE,
 } from './types';
 
@@ -85,3 +87,41 @@ export const addList = (alias) => (dispatch) => {
   );
 };
 
+export const checkListExistence = (alias) => (dispatch) => {
+  return ListService.fetchListAvailability(alias)
+    .then(res => res.json())
+    .then(
+      (data) => {
+        dispatch({
+          type: CHECK_EXISTING_ALIAS_SUCCESS,
+          payload: !data.available,
+        });
+
+        dispatch({
+          type: SET_MESSAGE,
+          payload: data.available ? 'Could not find list with that alias' : 'List found!',
+        });
+
+        return Promise.resolve();
+      },
+      (error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch({
+          type: CHECK_EXISTING_ALIAS_FAIL,
+        });
+
+        dispatch({
+          type: SET_MESSAGE,
+          payload: message,
+        });
+
+        return Promise.reject();
+      }
+    );
+};

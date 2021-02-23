@@ -3,9 +3,11 @@ import {
   CHECK_ALIAS_AVAILABILITY_FAIL,
   ADD_LIST_SUCCESS,
   ADD_LIST_FAIL,
+  CHECK_EXISTING_ALIAS_SUCCESS,
+  CHECK_EXISTING_ALIAS_FAIL,
 } from '../actions/types';
 
-const initialState = { aliasInput: "", toCheck: false, isAliasAvailable: null, newListCreated: null, };
+const initialState = { isAliasAvailable: null, newListCreated: false, listFound: null };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
@@ -14,24 +16,31 @@ export default function (state = initialState, action) {
     case CHECK_ALIAS_AVAILABILITY_SUCCESS:
       return {
         ...state,
-        isAliasAvailable: payload,
-        toCheck: false,
+        isAliasAvailable: payload
       };
     case CHECK_ALIAS_AVAILABILITY_FAIL:
       return {
-        ...state,
-        toCheck: false,
+        ...state
       };
     case ADD_LIST_SUCCESS:
       return {
         ...state,
         newListCreated: true,
       };
-      case ADD_LIST_FAIL:
-        return {
-          ...state,
-          newListCreated: false,
-        };
+    case ADD_LIST_FAIL:
+      return {
+        ...state,
+        newListCreated: false,
+      };
+    case CHECK_EXISTING_ALIAS_SUCCESS:
+      return {
+        ...state,
+        listFound: payload
+      };
+    case CHECK_EXISTING_ALIAS_FAIL:
+      return {
+        ...state
+      };
     default:
       return state;
   }
