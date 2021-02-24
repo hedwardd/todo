@@ -9,15 +9,16 @@ import {
 } from './types';
 
 import TaskService from '../services/task.service';
+import ListService from '../services/list.service';
 
-export const getTasks = () => (dispatch) => {
-  return TaskService.getTasks()
+export const getTasks = (alias) => (dispatch) => {
+  return ListService.getListWithTasks(alias)
     .then(res => res.json())
     .then(
       (data) => {
         dispatch({
           type: GET_TASKS_SUCCESS,
-          payload: { tasks: data },
+          payload: { tasks: data.tasks },
         });
 
         return Promise.resolve();

@@ -1,7 +1,7 @@
 const API_URL = '/api/tasks';
 
-const getTasks = () => {
-  return fetch(API_URL);
+const getTasks = (alias) => {
+  return fetch(`${API_URL}/${alias}`);
 };
 
 const addTask = (name, dueDate) => {

@@ -1,5 +1,6 @@
 const db = require("../models");
 const Task = db.tasks;
+const List = db.lists;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Task
@@ -29,6 +30,35 @@ exports.create = (req, res) => {
       res.status(500).send({
         message:
           err.message || "Some error occurred while creating the Task."
+      });
+    });
+};
+
+// Retrieve all Tasks from the database in a given list.
+exports.findByAlias = (req, res) => {
+  const alias = req.params.alias;
+  console.log(alias);
+  const condition = {
+    include: {
+      model: List,
+      as: 'list',
+      where: {
+        alias: {
+          [Op.like]: alias,
+        }
+      }
+    }
+  };
+
+  Task.findAll(condition)
+    .then(data => {
+      const sortedTasks = data.sort((t1, t2) => new Date(t1.dueDate).getTime() > new Date(t2.dueDate).getTime());
+      res.send(sortedTasks);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tasks."
       });
     });
 };

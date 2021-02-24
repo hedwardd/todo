@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTasks, updateTask} from '../../actions/task';
+import { useParams } from "react-router-dom";
+import { getTasks, updateTask } from '../../actions/task';
 import NewTaskForm from './NewTaskForm';
 import ThemePicker from './ThemePicker';
 import { TaskListWrapper, ListHeading, SubheadingSection, ItemSubheading, DateSubheading, StatusSubheading, StyledUL, TaskListItem, NameBoxWrapper, DateBoxWrapper, DoneBoxWrapper, NameBox, DateBox, StyledMessage, DoneBox, CreditsWrapper } from '../../styles/TaskList';
@@ -16,8 +17,9 @@ const TaskList = (props) => {
     dispatch(updateTask(taskId, update));
   };
 
+  const { alias } = useParams();
   useEffect(() => {
-    if (toFetch) dispatch(getTasks());
+    if (toFetch) dispatch(getTasks(alias));
   }, [toFetch]);
 
   return (
