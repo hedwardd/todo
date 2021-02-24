@@ -6,7 +6,7 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Task
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.name || !req.body.dueDate || !req.body.listId) {
+  if (!req.body.name || !req.body.dueDate || !req.body.listAlias) {
     res.json({
       error: "Name, due date, and list required."
     });
@@ -17,7 +17,7 @@ exports.create = (req, res) => {
   const task = {
     name: req.body.name,
     dueDate: req.body.dueDate,
-    listId: req.body.listId,
+    listAlias: req.body.listAlias,
     isDone: false,
   };
 
@@ -36,19 +36,16 @@ exports.create = (req, res) => {
 
 // Retrieve all Tasks from the database in a given list.
 exports.findByAlias = (req, res) => {
-  const alias = req.params.alias;
-  console.log(alias);
-  const condition = {
-    include: {
-      model: List,
-      as: 'list',
-      where: {
-        alias: {
-          [Op.like]: alias,
-        }
-      }
-    }
-  };
+// Validate request
+if (!req.params.listAlias) {
+  res.json({
+    error: "List alias required."
+  });
+  return;
+}
+
+  const { listAlias } = req.params;
+  const condition = { where: { listAlias: listAlias } };
 
   Task.findAll(condition)
     .then(data => {
@@ -59,39 +56,6 @@ exports.findByAlias = (req, res) => {
       res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving tasks."
-      });
-    });
-};
-
-// Retrieve all Tasks from the database in a given list.
-exports.findAll = (req, res) => {
-  const listId = req.query.listId;
-  const condition = listId ? { list: { [Op.like]: `%${list}%` } } : null;
-
-  Task.findAll({ where: condition })
-    .then(data => {
-      const sortedTasks = data.sort((t1, t2) => new Date(t1.dueDate).getTime() > new Date(t2.dueDate).getTime());
-      res.send(sortedTasks);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tasks."
-      });
-    });
-};
-
-// Find a single Task with an id
-exports.findOne = (req, res) => {
-  const id = req.params.id;
-
-  Task.findByPk(id)
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "Error retrieving Task with id=" + id
       });
     });
 };
@@ -142,37 +106,6 @@ exports.delete = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message: "Could not delete Task with id=" + id
-      });
-    });
-};
-
-// Delete all Tasks from the database.
-exports.deleteAll = (req, res) => {
-  Task.destroy({
-    where: {},
-    truncate: false
-  })
-    .then(nums => {
-      res.send({ message: `${nums} tasks were deleted successfully!` });
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while removing all tasks."
-      });
-    });
-};
-
-// Find all done Tasks
-exports.findAllDone = (req, res) => {
-  Task.findAll({ where: { isDone: true } })
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tasks."
       });
     });
 };

@@ -17,9 +17,9 @@ const TaskList = (props) => {
     dispatch(updateTask(taskId, update));
   };
 
-  const { alias } = useParams();
+  const { listAlias } = useParams();
   useEffect(() => {
-    if (toFetch) dispatch(getTasks(alias));
+    if (toFetch) dispatch(getTasks(listAlias));
   }, [toFetch]);
 
   return (

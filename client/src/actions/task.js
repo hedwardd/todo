@@ -11,8 +11,8 @@ import {
 import TaskService from '../services/task.service';
 import ListService from '../services/list.service';
 
-export const getTasks = (alias) => (dispatch) => {
-  return ListService.getListWithTasks(alias)
+export const getTasks = (listAlias) => (dispatch) => {
+  return ListService.getListWithTasks(listAlias)
     .then(res => res.json())
     .then(
       (data) => {
@@ -45,8 +45,8 @@ export const getTasks = (alias) => (dispatch) => {
     );
 };
 
-export const addTask = (name, dueDate) => (dispatch) => {
-  return TaskService.addTask(name, dueDate)
+export const addTask = (name, dueDate, listAlias) => (dispatch) => {
+  return TaskService.addTask(name, dueDate, listAlias)
     .then(res => res.json())
     .then(
       (data) => {

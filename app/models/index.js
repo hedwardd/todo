@@ -10,10 +10,7 @@ db.sequelize = sequelize;
 db.tasks = require("./task.model.js")(sequelize, Sequelize);
 db.lists = require("./list.model.js")(sequelize, Sequelize);
 
-db.lists.hasMany(db.tasks, { as: "tasks" });
-db.tasks.belongsTo(db.lists, {
-  foreignKey: "listId",
-  as: "list",
-})
+db.tasks.belongsTo(db.lists, { targetKey: 'alias', foreignKey: 'listAlias' });
+db.lists.hasMany(db.tasks, { sourceKey: 'alias', foreignKey: 'listAlias' });
 
 module.exports = db;

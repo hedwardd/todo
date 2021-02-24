@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useParams } from "react-router-dom";
 import { addTask } from '../../actions/task';
 import { TaskListItem, NameBoxWrapper, DateBoxWrapper, DoneBoxWrapper, NameBox, DoneBox } from '../../styles/TaskList';
 import { DateInput } from '../../styles/NewTaskForm';
@@ -10,8 +11,6 @@ const NewTaskForm = (props) => {
   const [formValues, setFormValues] = useState({ name: '', dueDate: '' });
   const [isLoading, setIsLoading] = useState(false);
 
-  const dispatch = useDispatch();
-
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setFormValues({
@@ -20,6 +19,9 @@ const NewTaskForm = (props) => {
     });
   };
 
+  const dispatch = useDispatch();
+  const { listAlias } = useParams();
+
   function handleSubmit(event) {
     event.preventDefault();
     
@@ -27,7 +29,7 @@ const NewTaskForm = (props) => {
 
     const { name, dueDate } = formValues;
 
-    dispatch(addTask(name, dueDate))
+    dispatch(addTask(name, dueDate, listAlias))
       .then(() => {
         setIsLoading(false);
         setFormValues({ name: '', dueDate: '' });

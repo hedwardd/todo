@@ -50,7 +50,7 @@ function App() {
   return (
     <Router>
         <Switch>
-          <Route path="/tasks/:alias">
+          <Route path="/tasks/:listAlias">
             <ThemeProvider theme={themeObject}>
               <TaskListGlobalStyles />
               <TaskList />
