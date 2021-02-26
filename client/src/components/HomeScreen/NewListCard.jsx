@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { checkAliasAvailability, addList } from '../../actions/list';
-import { Card, SectionWrapper, H2Wrapper, StyledH2, PrimaryButton, PrimaryButtonText, SecondaryButton, SecondaryButtonText } from '../../styles/HomeScreen';
+import { Card, SectionWrapper, H2Wrapper, StyledH2, PrimaryButton, PrimaryButtonText, SecondaryButton, SecondaryButtonText } from '../../styles/HomeScreen/HomeScreen';
 
 const NewListCard = ({ isUserCreating, setIsUserCreating }) => {
 

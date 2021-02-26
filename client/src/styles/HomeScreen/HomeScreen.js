@@ -1,19 +1,18 @@
 import styled from 'styled-components';
-import device from './device';
+import device from '../device';
 
 export const Card = styled.div`
-/* Auto Layout */
 display: flex;
 flex-direction: column;
 justify-content: center;
-align-items: center;
+align-items: stretch;
 padding: 24px;
 
 position: absolute;
 width: 350px;
-height: 294px;
+height: 300px;
 left: calc(50% - 350px/2);
-top: calc(50% - 294px/2);
+top: calc(50% - 300px/2);
 
 /* Background / Card */
 background: #FFFFFF;
@@ -23,50 +22,28 @@ box-sizing: border-box;
 /* Frames / Elevated */
 box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.12);
 border-radius: 8px;
-
-/* Inside Auto Layout */
-flex: none;
-order: 0;
-flex-grow: 0;
-margin: 0px 0px;
 `;
 
-export const SectionWrapper = styled.div`
-/* Auto Layout */
+export const SectionWrapperRow = styled.div`
 display: flex;
 flex-direction: row;
-justify-content: center;
+justify-content: space-between;
 align-items: center;
-padding: 0px 24px;
 
-position: static;
-width: 330px;
-height: 123px;
-left: 10px;
-top: 147px;
+flex: 1;
+margin: 20px 0px;
+`;
 
-
-/* Inside Auto Layout */
-flex: none;
-order: 1;
-flex-grow: 0;
-margin: 0px 0px;
+export const SectionWrapperCol = styled(SectionWrapperRow)`
+flex-direction: column;
 `;
 
 export const H2Wrapper = styled.div`
-/* Auto Layout */
 display: flex;
 flex-direction: column;
-align-items: flex-start;
-padding: 0px;
+justify-content: center;
+align-items: center;
 
-position: static;
-width: 183px;
-height: 29px;
-left: 24px;
-top: 47px;
-
-/* Inside Auto Layout */
 flex: none;
 order: 0;
 align-self: stretch;
@@ -75,13 +52,6 @@ margin: 0px 24px;
 `;
 
 export const StyledH2 = styled.h2`
-/* Use Existing */
-position: static;
-width: 179px;
-height: 29px;
-left: 0px;
-top: 0px;
-
 /* Header / Card */
 font-family: SF Pro Display;
 font-style: normal;
@@ -93,79 +63,45 @@ text-align: center;
 
 /* Full / Black */
 color: #000000;
-
-/* Inside Auto Layout */
-flex: none;
-order: 0;
-align-self: stretch;
-flex-grow: 0;
-margin: 8px 0px;
 `;
 
 export const PrimaryButton = styled.button`
-
-/* Auto Layout */
 display: flex;
-flex-direction: column;
+flex-direction: row;
 justify-content: center;
 align-items: center;
 padding: 6px 16px;
 
-position: static;
-left: 70%;
-right: 7.27%;
-top: 36.99%;
-bottom: 36.99%;
+height: 32px;
 
 background: #808080;
+border: none;
 border-radius: 4px;
-
-/* Inside Auto Layout */
-flex: none;
-order: 1;
-flex-grow: 0;
-margin: 0px 24px;
 `;
 
 export const PrimaryButtonText = styled.p`
-position: static;
-width: 43px;
-height: 20px;
-left: 16px;
-top: 6px;
-
 font-family: SF Pro Display;
 font-style: normal;
-font-weight: bold;
+// font-weight: bold;
 font-size: 14px;
 line-height: 20px;
 /* identical to box height, or 143% */
 
 text-align: center;
+white-space: nowrap;
 
 /* Base / White */
 color: #FFFFFF;
-
-/* Inside Auto Layout */
-flex: none;
-order: 0;
-flex-grow: 0;
-margin: 4px 0px;
 `;
 
 export const SecondaryButton = styled.button`
-/* Auto Layout */
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 padding: 6px 16px;
 
-position: static;
-left: 68.79%;
-right: 7.27%;
-top: 36.99%;
-bottom: 36.99%;
+height: 32px;
 
 /* Base / White */
 background: #FFFFFF;
@@ -173,27 +109,14 @@ background: #FFFFFF;
 /* Gray / 200 */
 border: 1px solid #C1C9D2;
 box-sizing: border-box;
-/* Elevation / 300 */
 
 box-shadow: 0px 1px 2px rgba(55, 65, 81, 0.06), 0px 1px 3px rgba(55, 65, 81, 0.1);
 border-radius: 4px;
-
-/* Inside Auto Layout */
-flex: none;
-order: 1;
-flex-grow: 0;
-margin: 0px 24px;
 `;
 
 export const SecondaryButtonText = styled.p`
-position: static;
-width: 47px;
-height: 20px;
-left: 16px;
-top: 6px;
-
 /* Body / 500 */
-font-family: Inter;
+font-family: SF Pro Display;
 font-style: normal;
 font-weight: 500;
 font-size: 14px;
@@ -204,10 +127,81 @@ text-align: center;
 
 /* Gray / 600 */
 color: #4F566B;
+`;
 
-/* Inside Auto Layout */
-flex: none;
-order: 0;
-flex-grow: 0;
-margin: 12px 0px;
+export const TertiaryButton = styled.button`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 6px 6px;
+
+position: absolute;
+left: 0;
+top: 0;
+
+/* Base / White */
+background: none;
+
+/* Gray / 200 */
+// border: 1px solid #C1C9D2;
+box-sizing: border-box;
+/* Elevation / 300 */
+
+// box-shadow: 0px 1px 2px rgba(55, 65, 81, 0.06), 0px 1px 3px rgba(55, 65, 81, 0.1);
+// border-radius: 4px;
+border: none;
+`;
+
+export const TertiaryButtonText = styled.p`
+padding: 6px 16px;
+
+/* Body / 500 */
+font-family: SF Pro Display;
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 20px;
+/* identical to box height, or 143% */
+
+text-align: center;
+
+/* Gray / 600 */
+color: #4F566B;
+`;
+
+export const StyledInput = styled.input`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 4px;
+
+width: 302px;
+
+border: 1px solid #000000;
+
+text-align: center;
+`;
+
+export const MessageWrapper = styled.div`
+position: absolute;
+bottom: 41%;
+// display: flex;
+// flex-direction: row;
+// justify-content: center;
+// align-items: center;
+
+// height: 33px;
+`;
+
+export const MessageText = styled.p`
+font-family: SF Pro Display;
+font-style: normal;
+font-weight: 800;
+font-size: 11px;
+line-height: 13px;
+text-align: center;
+
+color: #000000;
 `;

@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { getTasks, updateTask } from '../../actions/task';
 import NewTaskForm from './NewTaskForm';
 import ThemePicker from './ThemePicker';
-import { TaskListWrapper, ListHeading, SubheadingSection, ItemSubheading, DateSubheading, StatusSubheading, StyledUL, TaskListItem, NameBoxWrapper, DateBoxWrapper, DoneBoxWrapper, NameBox, DateBox, StyledMessage, DoneBox, CreditsWrapper } from '../../styles/TaskList';
+import { TaskListWrapper, ListHeading, SubheadingSection, ItemSubheading, DateSubheading, StatusSubheading, StyledUL, TaskListItem, NameBoxWrapper, DateBoxWrapper, DoneBoxWrapper, NameBox, DateBox, StyledMessage, DoneBox, CreditsWrapper } from '../../styles/TaskList/TaskList';
 
 const TaskList = (props) => {
 

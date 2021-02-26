@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { addTask } from '../../actions/task';
-import { TaskListItem, NameBoxWrapper, DateBoxWrapper, DoneBoxWrapper, NameBox, DoneBox } from '../../styles/TaskList';
-import { DateInput } from '../../styles/NewTaskForm';
+import { TaskListItem, NameBoxWrapper, DateBoxWrapper, DoneBoxWrapper, NameBox, DoneBox } from '../../styles/TaskList/TaskList';
+import { DateInput } from '../../styles/TaskList/NewTaskForm';
 
 
 const NewTaskForm = (props) => {

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Card, SectionWrapper, H2Wrapper, StyledH2, PrimaryButton, PrimaryButtonText, SecondaryButton, SecondaryButtonText } from '../../styles/HomeScreen';
+import { Card, SectionWrapperRow, H2Wrapper, StyledH2, PrimaryButton, PrimaryButtonText, SecondaryButton, SecondaryButtonText } from '../../styles/HomeScreen/HomeScreen';
 
 const InitialCard = ({ setIsUserCreating }) => {
 
   return (
     <Card>
-      <SectionWrapper>
+      <SectionWrapperRow>
         <H2Wrapper>
           <StyledH2>Create New List</StyledH2>
         </H2Wrapper>
@@ -14,9 +14,9 @@ const InitialCard = ({ setIsUserCreating }) => {
         >
           <PrimaryButtonText>Create</PrimaryButtonText>
         </PrimaryButton>
-      </SectionWrapper>
+      </SectionWrapperRow>
       
-      <SectionWrapper>
+      <SectionWrapperRow>
         <H2Wrapper>
           <StyledH2>Use Existing</StyledH2>
         </H2Wrapper>
@@ -25,7 +25,7 @@ const InitialCard = ({ setIsUserCreating }) => {
         >
           <SecondaryButtonText>Search</SecondaryButtonText>
         </SecondaryButton>
-      </SectionWrapper>
+      </SectionWrapperRow>
     </Card>
   );
 }

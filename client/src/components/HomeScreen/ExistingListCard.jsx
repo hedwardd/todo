@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { checkListExistence } from '../../actions/list';
-import { Card, SectionWrapper, H2Wrapper, StyledH2, PrimaryButton, PrimaryButtonText, SecondaryButton, SecondaryButtonText } from '../../styles/HomeScreen';
+import { Card, SectionWrapperRow, SectionWrapperCol, H2Wrapper, StyledH2, PrimaryButton, PrimaryButtonText, SecondaryButton, SecondaryButtonText, TertiaryButton, TertiaryButtonText, StyledInput, MessageWrapper, MessageText } from '../../styles/HomeScreen/HomeScreen';
 
 const ExistingListCard = ({ setIsUserCreating }) => {
 
@@ -43,32 +43,41 @@ const ExistingListCard = ({ setIsUserCreating }) => {
 
   return (
     <Card>
-      <button
+      <TertiaryButton
         onClick={() => setIsUserCreating(null)}
       >
-        Back
-      </button>
+        <TertiaryButtonText>Back</TertiaryButtonText>
+      </TertiaryButton>
 
-      <h2>
-        Enter your alias...
-      </h2>
+      <SectionWrapperCol>
+        <H2Wrapper>
+          <StyledH2>
+            Enter your alias...
+          </StyledH2>
+        </H2Wrapper>
 
-      <input
-        placeholder="my-list"
-        value={aliasInput}
-        onChange={handleChange}
-      />
+        <StyledInput
+          placeholder="my-list"
+          value={aliasInput}
+          onChange={handleChange}
+        />
 
-      <button
-        disabled={isLoading ? true : !listFound}
-        onClick={handleClick}
-      >
-        Go to List
-      </button>
+        <MessageWrapper>
+          {!isLoading && message && (
+            <MessageText>{message}</MessageText>
+          )}
+        </MessageWrapper>
+      </SectionWrapperCol>
 
-      {!isLoading && message && (
-        <p>{message}</p>
-      )}
+      <SectionWrapperCol>
+        <PrimaryButton
+          disabled={isLoading ? true : !listFound}
+          onClick={handleClick}
+        >
+          <PrimaryButtonText>Go</PrimaryButtonText>
+        </PrimaryButton>
+
+      </SectionWrapperCol>
     </Card>
   );
 }

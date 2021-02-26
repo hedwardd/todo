@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import device from './device';
+import device from '../device';
 
 export const TaskListGlobalStyles = createGlobalStyle`
 body {

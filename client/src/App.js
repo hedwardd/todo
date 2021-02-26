@@ -10,7 +10,7 @@ import {
 import TaskList from './components/TaskList/TaskList';
 import HomeScreen from './components/HomeScreen/HomeScreen';
 import themes from './styles/themes';
-import { TaskListGlobalStyles } from './styles/TaskList';
+import { TaskListGlobalStyles } from './styles/TaskList/TaskList';
 
 const fontFamilies = Object.values(themes).map(e => e.fontFamily).filter(e => !!e);
 
