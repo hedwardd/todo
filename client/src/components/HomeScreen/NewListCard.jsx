@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { checkAliasAvailability, addList } from '../../actions/list';
-import { Card, SectionWrapper, H2Wrapper, StyledH2, PrimaryButton, PrimaryButtonText, SecondaryButton, SecondaryButtonText } from '../../styles/HomeScreen/HomeScreen';
+import { Card, SectionWrapperRow, SectionWrapperCol, H2Wrapper, StyledH2, PrimaryButton, PrimaryButtonText, SecondaryButton, SecondaryButtonText, TertiaryButton, TertiaryButtonText, StyledInput, MessageWrapper, MessageText } from '../../styles/HomeScreen/HomeScreen';
 
 const NewListCard = ({ isUserCreating, setIsUserCreating }) => {
 
@@ -43,42 +43,50 @@ const NewListCard = ({ isUserCreating, setIsUserCreating }) => {
     setAliasInput(value);
   };
 
-  const headerText = isUserCreating
-    ? "Pick an alias..."
-    : "Enter your alias...";
+  // const headerText = isUserCreating
+  //   ? "Pick an alias..."
+  //   : "Enter your alias...";
 
-  const buttonText = isUserCreating
-    ? "Create"
-    : "Go to List";
+  // const buttonText = isUserCreating
+  //   ? "Create"
+  //   : "Go to List";
 
   return (
     <Card>
-      <button
+      <TertiaryButton
         onClick={() => setIsUserCreating(null)}
       >
-        Back
-      </button>
+        <TertiaryButtonText>Back</TertiaryButtonText>
+      </TertiaryButton>
 
-      <h2>
-        {headerText}
-      </h2>
+      <SectionWrapperCol>
+        <H2Wrapper>
+          <StyledH2>
+            Pick an alias...
+          </StyledH2>
+        </H2Wrapper>
 
-      <input
-        placeholder="my-list"
-        value={aliasInput}
-        onChange={handleChange}
-      />
+        <StyledInput
+          placeholder="my-list"
+          value={aliasInput}
+          onChange={handleChange}
+        />
 
-      <button
-        disabled={isLoading ? true : !isAliasAvailable}
-        onClick={() => dispatch(addList(aliasInput))}
-      >
-        {buttonText}
-      </button>
+        <MessageWrapper>
+          {!isLoading && message && (
+            <MessageText>{message}</MessageText>
+          )}
+        </MessageWrapper>
+      </SectionWrapperCol>
 
-      {!isLoading && message && (
-        <p>{message}</p>
-      )}
+      <SectionWrapperCol>
+        <PrimaryButton
+          disabled={isLoading ? true : !isAliasAvailable}
+          onClick={() => dispatch(addList(aliasInput))}
+        >
+          <PrimaryButtonText>Create</PrimaryButtonText>
+        </PrimaryButton>
+      </SectionWrapperCol>
     </Card>
   );
 }

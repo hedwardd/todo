@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
+import scale from '../scale'
 import device from '../device';
 
 export const Card = styled.div`
@@ -6,22 +8,20 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: stretch;
-padding: 24px;
+padding: ${scale[6]};
 
 position: absolute;
-width: 350px;
-height: 300px;
-left: calc(50% - 350px/2);
-top: calc(50% - 300px/2);
+width: ${scale[13]};
+height: ${scale[12]};
+left: calc(50% - ${scale[13]}/2);
+top: calc(50% - ${scale[12]}/2);
 
-/* Background / Card */
 background: #FFFFFF;
 border: 1px solid #D5D5D5;
 box-sizing: border-box;
 
-/* Frames / Elevated */
-box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.12);
-border-radius: 8px;
+box-shadow: 0px ${scale[4]} ${scale[5]} rgba(0, 0, 0, 0.12);
+border-radius: ${scale[2]};
 `;
 
 export const SectionWrapperRow = styled.div`
@@ -30,8 +30,7 @@ flex-direction: row;
 justify-content: space-between;
 align-items: center;
 
-flex: 1;
-margin: 20px 0px;
+margin: ${scale[5]} 0px;
 `;
 
 export const SectionWrapperCol = styled(SectionWrapperRow)`
@@ -44,11 +43,8 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 
-flex: none;
-order: 0;
-align-self: stretch;
 flex-grow: 1;
-margin: 0px 24px;
+margin: 0px ${scale[5]};
 `;
 
 export const StyledH2 = styled.h2`
@@ -56,12 +52,11 @@ export const StyledH2 = styled.h2`
 font-family: SF Pro Display;
 font-style: normal;
 font-weight: 800;
-font-size: 24px;
-line-height: 29px;
-/* identical to box height */
+font-size: ${scale[5]};
+line-height: ${scale[5]};
+
 text-align: center;
 
-/* Full / Black */
 color: #000000;
 `;
 
@@ -70,9 +65,9 @@ display: flex;
 flex-direction: row;
 justify-content: center;
 align-items: center;
-padding: 6px 16px;
+padding: ${scale[2]} ${scale[4]};
 
-height: 32px;
+height: ${scale[6]};
 
 background: #808080;
 border: none;
@@ -82,15 +77,12 @@ border-radius: 4px;
 export const PrimaryButtonText = styled.p`
 font-family: SF Pro Display;
 font-style: normal;
-// font-weight: bold;
-font-size: 14px;
-line-height: 20px;
-/* identical to box height, or 143% */
+font-size: ${scale[3]};
+line-height: ${scale[4]};
 
 text-align: center;
 white-space: nowrap;
 
-/* Base / White */
 color: #FFFFFF;
 `;
 
@@ -99,33 +91,27 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-padding: 6px 16px;
+padding: ${scale[2]} ${scale[4]};
 
-height: 32px;
+height: ${scale[6]};
 
-/* Base / White */
 background: #FFFFFF;
 
-/* Gray / 200 */
 border: 1px solid #C1C9D2;
 box-sizing: border-box;
-
 box-shadow: 0px 1px 2px rgba(55, 65, 81, 0.06), 0px 1px 3px rgba(55, 65, 81, 0.1);
-border-radius: 4px;
+border-radius: ${scale[1]};
 `;
 
 export const SecondaryButtonText = styled.p`
-/* Body / 500 */
 font-family: SF Pro Display;
 font-style: normal;
 font-weight: 500;
-font-size: 14px;
-line-height: 20px;
-/* identical to box height, or 143% */
+font-size: ${scale[3]};
+line-height: ${scale[4]};
 
 text-align: center;
 
-/* Gray / 600 */
 color: #4F566B;
 `;
 
@@ -134,40 +120,32 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-padding: 6px 6px;
+padding: ${scale[2]} ${scale[4]};
 
 position: absolute;
 left: 0;
 top: 0;
 
-/* Base / White */
 background: none;
 
-/* Gray / 200 */
-// border: 1px solid #C1C9D2;
 box-sizing: border-box;
-/* Elevation / 300 */
-
-// box-shadow: 0px 1px 2px rgba(55, 65, 81, 0.06), 0px 1px 3px rgba(55, 65, 81, 0.1);
-// border-radius: 4px;
 border: none;
 `;
 
 export const TertiaryButtonText = styled.p`
-padding: 6px 16px;
-
-/* Body / 500 */
 font-family: SF Pro Display;
 font-style: normal;
 font-weight: 500;
-font-size: 12px;
-line-height: 20px;
-/* identical to box height, or 143% */
+font-size: ${scale[3]};
+line-height: ${scale[4]};
 
 text-align: center;
 
-/* Gray / 600 */
 color: #4F566B;
+`;
+
+export const InputWrapper = styled.div`
+position: relative;
 `;
 
 export const StyledInput = styled.input`
@@ -175,32 +153,34 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-padding: 4px;
+padding: ${scale[2]};
 
-width: 302px;
+width: ${scale[12]};
 
 border: 1px solid #000000;
 
+font-size: ${scale[4]};
 text-align: center;
+`;
+
+export const StyledLoader = styled(Loader)`
+position: absolute;
+right: ${scale[2]};
+top: calc(50% - ${scale[5]}/2);
+
 `;
 
 export const MessageWrapper = styled.div`
 position: absolute;
-bottom: 41%;
-// display: flex;
-// flex-direction: row;
-// justify-content: center;
-// align-items: center;
-
-// height: 33px;
+bottom: 30%;
 `;
 
 export const MessageText = styled.p`
 font-family: SF Pro Display;
 font-style: normal;
-font-weight: 800;
-font-size: 11px;
-line-height: 13px;
+// font-weight: 400;
+font-size: ${scale[3]};
+line-height: ${scale[3]};
 text-align: center;
 
 color: #000000;

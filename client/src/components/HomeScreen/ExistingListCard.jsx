@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { checkListExistence } from '../../actions/list';
-import { Card, SectionWrapperRow, SectionWrapperCol, H2Wrapper, StyledH2, PrimaryButton, PrimaryButtonText, SecondaryButton, SecondaryButtonText, TertiaryButton, TertiaryButtonText, StyledInput, MessageWrapper, MessageText } from '../../styles/HomeScreen/HomeScreen';
+import { Card, SectionWrapperCol, H2Wrapper, StyledH2, PrimaryButton, PrimaryButtonText, TertiaryButton, TertiaryButtonText, InputWrapper, StyledInput, StyledLoader, MessageWrapper, MessageText } from '../../styles/HomeScreen/HomeScreen';
 
 const ExistingListCard = ({ setIsUserCreating }) => {
 
@@ -16,9 +16,9 @@ const ExistingListCard = ({ setIsUserCreating }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setIsLoading(true);
     const timer = setTimeout(() => {
-      if (aliasInput.length > 2)
+      if (aliasInput.length > 2) {
+        setIsLoading(true);
         dispatch(checkListExistence(aliasInput))
           .then(() => {
             setIsLoading(false);
@@ -26,6 +26,8 @@ const ExistingListCard = ({ setIsUserCreating }) => {
           .catch(() => {
             setIsLoading(false);
           });
+      }
+      else setIsLoading(false);
     }, 500);
 
     return () => {clearTimeout(timer)};
@@ -56,11 +58,22 @@ const ExistingListCard = ({ setIsUserCreating }) => {
           </StyledH2>
         </H2Wrapper>
 
-        <StyledInput
-          placeholder="my-list"
-          value={aliasInput}
-          onChange={handleChange}
-        />
+        <InputWrapper>
+          <StyledInput
+            placeholder="my-list"
+            value={aliasInput}
+            onChange={handleChange}
+          />
+          {isLoading ? (
+            <StyledLoader 
+              type="TailSpin"
+              color="#808080"
+              height={24}
+              width={24}
+              timeout={10000} //3 secs
+            />
+          ) : null }
+        </InputWrapper>
 
         <MessageWrapper>
           {!isLoading && message && (

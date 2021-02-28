@@ -7,6 +7,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import TaskList from './components/TaskList/TaskList';
 import HomeScreen from './components/HomeScreen/HomeScreen';
 import themes from './styles/themes';

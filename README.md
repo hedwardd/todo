@@ -77,12 +77,13 @@ Project Link: [Source](https://github.com/hedwardd/todo), [Live](https://todo-hd
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
-* [Themes by Helen Thum](http://helenthum.com/)
-* [Sequelize](https://sequelize.org/)
-* [node-postgres](https://github.com/brianc/node-postgres)
+* [Themes by Helen Thum](helenthum.com)
+* [Sequelize](sequelize.org/)
+* [node-postgres](github.com/brianc/node-postgres)
 * [styled-components](styled-components.com)
-* [dotenv](https://github.com/motdotla/dotenv)
-* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
+* [react-loader-spinner](github.com/mhnpd/react-loader-spinner)
+* [dotenv](github.com/motdotla/dotenv)
+* [Best-README-Template](github.com/othneildrew/Best-README-Template)
 
 
 

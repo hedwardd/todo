@@ -99,7 +99,7 @@ export const checkListExistence = (alias) => (dispatch) => {
 
         dispatch({
           type: SET_MESSAGE,
-          payload: data.available ? 'Could not find list with that alias' : 'List found!',
+          payload: data.available ? 'Could not find any list with that alias.' : 'List found!',
         });
 
         return Promise.resolve();
