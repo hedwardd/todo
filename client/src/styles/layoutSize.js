@@ -1,4 +1,4 @@
-const scale = {
+const layoutSize = {
   1: '4px',
   2: '8px',
   3: '12px',
@@ -17,4 +17,4 @@ const scale = {
   16: '768px',
 }
   
-export default scale;
+export default layoutSize;

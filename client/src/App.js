@@ -12,6 +12,7 @@ import TaskList from './components/TaskList/TaskList';
 import HomeScreen from './components/HomeScreen/HomeScreen';
 import themes from './styles/themes';
 import { TaskListGlobalStyles } from './styles/TaskList/TaskList';
+import { HomeScreenGlobalStyle } from './styles/HomeScreen/GlobalStyle';
 
 const fontFamilies = Object.values(themes).map(e => e.fontFamily).filter(e => !!e);
 
@@ -59,6 +60,7 @@ function App() {
           </Route>
           
           <Route path="/">
+            <HomeScreenGlobalStyle />
             <HomeScreen />
           </Route>
         </Switch>
