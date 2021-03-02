@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from '../../styles/HomeScreen/Card';
-import { SectionWrapperRow, H2Wrapper, StyledH2 } from '../../styles/HomeScreen/HomeScreen';
+import { SectionWrapperRow, H2Wrapper, StyledH2 } from '../../styles/HomeScreen/NavigationCard';
 import { PrimaryButton, PrimaryButtonText, SecondaryButton, SecondaryButtonText, TertiaryButton, TertiaryButtonText, } from '../../styles/HomeScreen/Buttons';
 
 const InitialCard = ({ setIsUserCreating }) => {

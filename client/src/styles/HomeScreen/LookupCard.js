@@ -4,17 +4,13 @@ import layoutSize from '../layoutSize';
 import fontSize from '../fontSize';
 import { PrimaryColor, NeutralColor, GreenColor, RedColor } from './Colors';
 
-export const SectionWrapperRow = styled.div`
+export const SectionWrapperCol = styled.div`
 display: flex;
-flex-direction: row;
+flex-direction: column;
 justify-content: space-between;
 align-items: center;
 
 margin: ${layoutSize[5]} 0px;
-`;
-
-export const SectionWrapperCol = styled(SectionWrapperRow)`
-flex-direction: column;
 `;
 
 export const H2Wrapper = styled.div`

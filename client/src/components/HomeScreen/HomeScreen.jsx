@@ -4,7 +4,6 @@ import { checkAliasAvailability } from '../../actions/list';
 import InitialCard from './InitialCard';
 import NewListCard from './NewListCard';
 import ExistingListCard from './ExistingListCard';
-import { Card, SectionWrapper, H2Wrapper, StyledH2, PrimaryButton, PrimaryButtonText, SecondaryButton, SecondaryButtonText } from '../../styles/HomeScreen/HomeScreen';
 
 const HomeScreen = (props) => {
 
