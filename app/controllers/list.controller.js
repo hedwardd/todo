@@ -1,22 +1,31 @@
 const db = require("../models");
+const { isValidAlias } = require('../utilities/list');
 const List = db.lists;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new List
 exports.create = (req, res) => {
+  const { alias } = req.body;
+
   // Validate request
-  if (!req.body.alias) {
+  if (!alias) {
     res.json({
       error: "Alias required."
     });
     return;
   }
 
-  // TO-DO: Validate alias
+  // Validate alias
+  if (!isValidAlias(alias)) {
+    res.json({
+      error: "Invalid alias."
+    });
+    return;
+  }
 
   // Create a List
   const list = {
-    alias: req.body.alias,
+    alias: alias,
   };
 
   // Save List in the database
@@ -27,16 +36,22 @@ exports.create = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the List."
+          err.message || "An error occurred while creating the List."
       });
     });
 };
 
 // Check if list with alias already exists
 exports.checkAlias = (req, res) => {
-  const alias = req.params.alias;
+  const { alias } = req.params;
 
-  // TO-DO: Validate alias
+  // Validate alias
+  if (!isValidAlias(alias)) {
+    res.json({
+      error: "Invalid alias."
+    });
+    return;
+  }
 
   List.findOne({ where: { alias: alias } })
     .then(data => {
@@ -76,8 +91,8 @@ exports.checkAlias = (req, res) => {
 
 // Retrieve all Lists from the database.
 exports.findAll = (req, res) => {
-  const list = req.query.list;
-  var condition = list ? { list: { [Op.like]: `%${list}%` } } : null;
+  const { list } = req.query;
+  const condition = list ? { list: { [Op.like]: `%${list}%` } } : null;
 
   List.findAll({ where: condition })
     .then(data => {
@@ -94,7 +109,7 @@ exports.findAll = (req, res) => {
 
 // Find a single List by its alias
 exports.findOne = (req, res) => {
-  const alias = req.params.alias;
+  const { alias } = req.params;
 
   List.findOne({ where: { alias: alias }, include: ["tasks"] })
     .then(data => {
@@ -109,7 +124,7 @@ exports.findOne = (req, res) => {
 
 // Update a List by the alias in the request
 exports.update = (req, res) => {
-  const alias = req.params.alias;
+  const { alias } = req.params;
 
   List.update(req.body, {
     where: { alias: alias }
@@ -134,7 +149,7 @@ exports.update = (req, res) => {
 
 // Delete a List with the specified alias in the request
 exports.delete = (req, res) => {
-  const alias = req.params.alias;
+  const { alias } = req.params;
 
   List.destroy({
     where: { alias: alias }
