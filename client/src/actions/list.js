@@ -6,6 +6,8 @@ import {
   CHECK_EXISTING_ALIAS_SUCCESS,
   CHECK_EXISTING_ALIAS_FAIL,
   SET_MESSAGE,
+  RESET_STATE,
+  CLEAR_MESSAGE,
 } from './types';
 
 import ListService from '../services/list.service';
@@ -124,4 +126,14 @@ export const checkListExistence = (alias) => (dispatch) => {
         return Promise.reject();
       }
     );
+};
+
+export const resetState = () => (dispatch) => {
+  dispatch({
+    type: RESET_STATE,
+  });
+
+  dispatch({
+    type: CLEAR_MESSAGE,
+  });
 };

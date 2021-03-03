@@ -5,6 +5,7 @@ import {
   ADD_LIST_FAIL,
   CHECK_EXISTING_ALIAS_SUCCESS,
   CHECK_EXISTING_ALIAS_FAIL,
+  RESET_STATE,
 } from '../actions/types';
 
 const initialState = { isAliasAvailable: null, newListCreated: false, listFound: null };
@@ -41,6 +42,8 @@ export default function (state = initialState, action) {
       return {
         ...state
       };
+    case RESET_STATE:
+      return initialState;
     default:
       return state;
   }

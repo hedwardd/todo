@@ -1,28 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { checkListExistence } from '../../actions/list';
+import { checkAliasAvailability, addList, checkListExistence, resetState } from '../../actions/list';
 import { SectionWrapperCol, H2Wrapper, StyledH2, InputWrapper, StyledInput, StyledLoader, MessageWrapper, MessageText } from '../../styles/HomeScreen/LookupCard';
 import { Card } from '../../styles/HomeScreen/Card';
 import { PrimaryButton, PrimaryButtonText, TertiaryButton, TertiaryButtonText } from '../../styles/HomeScreen/Buttons';
 
-const ExistingListCard = ({ setIsUserCreating }) => {
+const LookupCard = ({ isUserCreating, setIsUserCreating }) => {
 
-  const [toCheck, setToCheck] = useState(false);
+  const { isAliasAvailable, newListCreated, listFound } = useSelector(state => state.list);
+  const { message } = useSelector(state => state.message);
+
   const [isLoading, setIsLoading] = useState(false);
   
   const [aliasInput, setAliasInput] = useState("");
-
-  const { listFound } = useSelector(state => state.list);
-  const { message } = useSelector(state => state.message);
-
+  
   const dispatch = useDispatch();
-
+  
+  const [toCheck, setToCheck] = useState(false);
+  const checkFunc = isUserCreating ? checkAliasAvailability : checkListExistence;
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       if (aliasInput.length > 2) {
         setIsLoading(true);
-        dispatch(checkListExistence(aliasInput))
+        dispatch(checkFunc(aliasInput))
           .then(() => {
             setIsLoading(false);
             setToCheck(false);
@@ -38,21 +40,39 @@ const ExistingListCard = ({ setIsUserCreating }) => {
     return () => {clearTimeout(timer)};
   }, [aliasInput]);
 
-  const history = useHistory();
-  const handleClick = () => {
-    history.push(`/tasks/${aliasInput}`);
+  const handleBackButton = () => {
+    setIsUserCreating(null);
+    dispatch(resetState());
   }
+
+  const history = useHistory();
+
+  const handlePrimaryClick = isUserCreating
+    ? () => dispatch(addList(aliasInput))
+    : () => history.push(`/tasks/${aliasInput}`);
 
   const handleChange = ({ target }) => {
     const { value } = target;
     setAliasInput(value);
     setToCheck(true);
+    if (value.length < 3)
+      dispatch(resetState);
   };
+
+  useEffect(() => {
+    if (newListCreated)
+      history.push(`/tasks/${aliasInput}`);
+  }, [newListCreated]);
+
+  const headerText = isUserCreating ? "Pick an alias..." : "Enter your alias...";
+  const buttonText = isUserCreating ? "Create" : "Go to List";
+  const lookupError = isUserCreating ? !isAliasAvailable : !listFound;
+  const isButtonDisabled = toCheck || isLoading || isUserCreating ? !isAliasAvailable : !listFound;
 
   return (
     <Card>
       <TertiaryButton
-        onClick={() => setIsUserCreating(null)}
+        onClick={handleBackButton}
       >
         <TertiaryButtonText>Back</TertiaryButtonText>
       </TertiaryButton>
@@ -60,7 +80,7 @@ const ExistingListCard = ({ setIsUserCreating }) => {
       <SectionWrapperCol>
         <H2Wrapper>
           <StyledH2>
-            Enter your alias...
+            {headerText}
           </StyledH2>
         </H2Wrapper>
 
@@ -84,7 +104,7 @@ const ExistingListCard = ({ setIsUserCreating }) => {
         <MessageWrapper>
           {!toCheck && !isLoading && message && (
             <MessageText
-              error={!listFound}
+              error={lookupError}
             >
               {message}
             </MessageText>
@@ -94,15 +114,16 @@ const ExistingListCard = ({ setIsUserCreating }) => {
 
       <SectionWrapperCol>
         <PrimaryButton
-          disabled={(toCheck || isLoading) ? true : !listFound}
-          onClick={handleClick}
+          disabled={isButtonDisabled}
+          onClick={handlePrimaryClick}
         >
-          <PrimaryButtonText>Go</PrimaryButtonText>
+          <PrimaryButtonText>
+            {buttonText}
+          </PrimaryButtonText>
         </PrimaryButton>
-
       </SectionWrapperCol>
     </Card>
   );
 }
 
-export default ExistingListCard;
+export default LookupCard;

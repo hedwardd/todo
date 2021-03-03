@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkAliasAvailability } from '../../actions/list';
 import InitialCard from './InitialCard';
-import NewListCard from './NewListCard';
-import ExistingListCard from './ExistingListCard';
+import LookupCard from './LookupCard';
 
 const HomeScreen = (props) => {
 
@@ -13,14 +12,10 @@ const HomeScreen = (props) => {
     <InitialCard
       setIsUserCreating={setIsUserCreating}
     />
-  ) : isUserCreating ? (
-    <NewListCard
+  ) : (
+    <LookupCard
       setIsUserCreating={setIsUserCreating}
       isUserCreating={isUserCreating}
-    />
-  ) : (
-    <ExistingListCard
-      setIsUserCreating={setIsUserCreating}
     />
   );
 }
