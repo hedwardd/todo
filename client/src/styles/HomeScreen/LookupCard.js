@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
 import layoutSize from '../layoutSize';
 import fontSize from '../fontSize';
-import { PrimaryColor, NeutralColor, GreenColor, RedColor } from './Colors';
+import { NeutralColor, GreenColor, RedColor } from './Colors';
 
 export const SectionWrapperCol = styled.div`
 display: flex;

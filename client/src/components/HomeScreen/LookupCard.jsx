@@ -6,6 +6,8 @@ import { SectionWrapperCol, H2Wrapper, StyledH2, InputWrapper, StyledInput, Styl
 import { Card } from '../../styles/HomeScreen/Card';
 import { PrimaryButton, PrimaryButtonText, TertiaryButton, TertiaryButtonText } from '../../styles/HomeScreen/Buttons';
 
+const AliasRegEx = /^[a-z0-9_-]{0,15}$/;
+
 const LookupCard = ({ isUserCreating, setIsUserCreating }) => {
 
   const { isAliasAvailable, newListCreated, listFound } = useSelector(state => state.list);
@@ -53,8 +55,10 @@ const LookupCard = ({ isUserCreating, setIsUserCreating }) => {
 
   const handleChange = ({ target }) => {
     const { value } = target;
-    setAliasInput(value);
-    setToCheck(true);
+    if (AliasRegEx.test(value)) {
+      setAliasInput(value);
+      setToCheck(true);
+    }
     if (value.length < 3)
       dispatch(resetState);
   };

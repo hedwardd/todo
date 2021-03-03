@@ -1,5 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
-import Loader from 'react-loader-spinner';
+import styled from 'styled-components';
 import layoutSize from '../layoutSize';
 import fontSize from '../fontSize';
 import { PrimaryColor, NeutralColor } from './Colors';

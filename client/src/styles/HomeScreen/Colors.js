@@ -1,29 +1,3 @@
-// export const primaryColor = {
-//   DEFAULT: '#4299E1',
-//   '100': '#F2F8FD',
-//   '200': '#C6E0F6',
-//   '300': '#9AC9EF',
-//   '400': '#6EB1E8',
-//   '500': '#4299E1',
-//   '600': '#2180CF',
-//   '700': '#1A65A3',
-//   '800': '#134A77',
-//   '900': '#0C2E4B'
-// }
-
-// export const neutralColor = {
-//   DEFAULT: '#A0AEC0',
-//   '100': '#FFFFFF',
-//   '200': '#FCFCFD',
-//   '300': '#DDE2E9',
-//   '400': '#BFC8D4',
-//   '500': '#A0AEC0',
-//   '600': '#8194AC',
-//   '700': '#647A96',
-//   '800': '#4F6178',
-//   '900': '#3B4859',
-// }
-
 export const PrimaryColor = {
   '50': '#EFF6FF',
   '100': '#DBEAFE',
@@ -35,7 +9,7 @@ export const PrimaryColor = {
   '700': '#1D4ED8',
   '800': '#1E40AF',
   '900': '#1E3A8A',
-}
+};
 
 export const NeutralColor = {
   '50': '#F9FAFB',
@@ -48,7 +22,7 @@ export const NeutralColor = {
   '700': '#374151',
   '800': '#1F2937',
   '900': '#111827',
-}
+};
 
 export const GreenColor = {
   '50': '#ECFDF5',
@@ -61,7 +35,7 @@ export const GreenColor = {
   '700': '#047857',
   '800': '#065F46',
   '900': '#064E3B',
-}
+};
 
 export const RedColor = {
   '50': '#FEF2F2',
@@ -74,4 +48,4 @@ export const RedColor = {
   '700': '#B91C1C',
   '800': '#991B1B',
   '900': '#7F1D1D',
-}
+};

@@ -1,6 +1,5 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import layoutSize from '../layoutSize';
-import { PrimaryColor, neutralColor } from './Colors';
 
 export const Card = styled.div`
 display: flex;
