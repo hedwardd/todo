@@ -2,9 +2,17 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import WebFont from 'webfontloader';
-import TaskList from './components/TaskList';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import TaskList from './components/TaskList/TaskList';
+import HomeScreen from './components/HomeScreen/HomeScreen';
 import themes from './styles/themes';
-import { GlobalStyles } from './styles/global';
+import { TaskListGlobalStyles } from './styles/TaskList/TaskList';
+import { HomeScreenGlobalStyle } from './styles/HomeScreen/GlobalStyle';
 
 const fontFamilies = Object.values(themes).map(e => e.fontFamily).filter(e => !!e);
 
@@ -42,10 +50,21 @@ function App() {
   }
 
   return (
-    <ThemeProvider theme={themeObject}>
-      <GlobalStyles />
-      <TaskList />
-    </ThemeProvider>
+    <Router>
+        <Switch>
+          <Route path="/tasks/:listAlias">
+            <ThemeProvider theme={themeObject}>
+              <TaskListGlobalStyles />
+              <TaskList />
+            </ThemeProvider>
+          </Route>
+          
+          <Route path="/">
+            <HomeScreenGlobalStyle />
+            <HomeScreen />
+          </Route>
+        </Switch>
+    </Router>
   );
 }
 

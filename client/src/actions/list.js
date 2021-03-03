@@ -1,57 +1,25 @@
 import {
-  GET_TASKS_SUCCESS,
-  GET_TASKS_FAIL,
-  ADD_TASK_SUCCESS,
-  ADD_TASK_FAIL,
-  UPDATE_TASK_SUCCESS,
-  UPDATE_TASK_FAIL,
+  CHECK_ALIAS_AVAILABILITY_SUCCESS,
+  CHECK_ALIAS_AVAILABILITY_FAIL,
+  ADD_LIST_SUCCESS,
+  ADD_LIST_FAIL,
+  CHECK_EXISTING_ALIAS_SUCCESS,
+  CHECK_EXISTING_ALIAS_FAIL,
   SET_MESSAGE,
+  RESET_STATE,
+  CLEAR_MESSAGE,
 } from './types';
 
-import TaskService from '../services/task.service';
 import ListService from '../services/list.service';
 
-export const getTasks = (listAlias) => (dispatch) => {
-  return ListService.getListWithTasks(listAlias)
+export const checkAliasAvailability = (alias) => (dispatch) => {
+  return ListService.fetchListAvailability(alias)
     .then(res => res.json())
     .then(
       (data) => {
         dispatch({
-          type: GET_TASKS_SUCCESS,
-          payload: { tasks: data.tasks },
-        });
-
-        return Promise.resolve();
-      },
-      (error) => {
-        const message =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-
-        dispatch({
-          type: GET_TASKS_FAIL,
-        });
-
-        dispatch({
-          type: SET_MESSAGE,
-          payload: message,
-        });
-
-        return Promise.reject();
-      }
-    );
-};
-
-export const addTask = (name, dueDate, listAlias) => (dispatch) => {
-  return TaskService.addTask(name, dueDate, listAlias)
-    .then(res => res.json())
-    .then(
-      (data) => {
-        dispatch({
-          type: ADD_TASK_SUCCESS,
+          type: CHECK_ALIAS_AVAILABILITY_SUCCESS,
+          payload: data.available,
         });
 
         dispatch({
@@ -70,7 +38,45 @@ export const addTask = (name, dueDate, listAlias) => (dispatch) => {
           error.toString();
 
         dispatch({
-          type: ADD_TASK_FAIL,
+          type: CHECK_ALIAS_AVAILABILITY_FAIL,
+        });
+
+        dispatch({
+          type: SET_MESSAGE,
+          payload: message,
+        });
+
+        return Promise.reject();
+      }
+    );
+};
+
+export const addList = (alias) => (dispatch) => {
+  return ListService.addList(alias)
+    .then(res => res.json())
+    .then(
+      (data) => {
+        dispatch({
+          type: ADD_LIST_SUCCESS,
+        });
+
+        dispatch({
+          type: SET_MESSAGE,
+          payload: data.message,
+        });
+
+        return Promise.resolve();
+      },
+      (error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch({
+          type: ADD_LIST_FAIL,
         });
 
         dispatch({
@@ -83,18 +89,19 @@ export const addTask = (name, dueDate, listAlias) => (dispatch) => {
   );
 };
 
-export const updateTask = (taskId, update) => (dispatch) => {
-  return TaskService.updateTask(taskId, update)
+export const checkListExistence = (alias) => (dispatch) => {
+  return ListService.fetchListAvailability(alias)
     .then(res => res.json())
     .then(
       (data) => {
         dispatch({
-          type: UPDATE_TASK_SUCCESS,
+          type: CHECK_EXISTING_ALIAS_SUCCESS,
+          payload: !data.available,
         });
 
         dispatch({
           type: SET_MESSAGE,
-          payload: data.message,
+          payload: data.available ? 'Could not find any list with that alias.' : 'List found!',
         });
 
         return Promise.resolve();
@@ -108,7 +115,7 @@ export const updateTask = (taskId, update) => (dispatch) => {
           error.toString();
 
         dispatch({
-          type: UPDATE_TASK_FAIL,
+          type: CHECK_EXISTING_ALIAS_FAIL,
         });
 
         dispatch({
@@ -119,4 +126,14 @@ export const updateTask = (taskId, update) => (dispatch) => {
         return Promise.reject();
       }
     );
+};
+
+export const resetState = () => (dispatch) => {
+  dispatch({
+    type: RESET_STATE,
+  });
+
+  dispatch({
+    type: CLEAR_MESSAGE,
+  });
 };

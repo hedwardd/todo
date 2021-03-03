@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setTheme } from '../actions/theme';
-import { StyledSelect } from '../styles/taskList';
+import { setTheme } from '../../actions/theme';
+import { StyledSelect } from '../../styles/TaskList/TaskList';
 
 
 const ThemePicker = (props) => {
