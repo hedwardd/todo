@@ -12,13 +12,13 @@ import TaskService from '../services/task.service';
 import ListService from '../services/list.service';
 
 export const getTasks = (listAlias) => (dispatch) => {
-  return ListService.getListWithTasks(listAlias)
+  return TaskService.getTasks(listAlias)
     .then(res => res.json())
     .then(
       (data) => {
         dispatch({
           type: GET_TASKS_SUCCESS,
-          payload: { tasks: data.tasks },
+          payload: { tasks: data },
         });
 
         return Promise.resolve();
