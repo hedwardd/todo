@@ -9,10 +9,13 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const forceDBSync = (process.env.NODE_ENV === 'DEV') ? true : false;
+const forceDBSync = process.env.NODE_ENV === 'DEV';
 
 db.sequelize.sync({ force: forceDBSync }).then(() => {
-  console.log("Drop and re-sync db.");
+  if (forceDBSync)
+    console.log("Dropped and re-synced db.");
+  else
+    console.log("Re-synced db.");
 });
 
 // Serve static files from the React app
