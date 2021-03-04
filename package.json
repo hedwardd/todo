@@ -10,11 +10,13 @@
     "express": "^4.17.1",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^6.4.0"
+    "sequelize": "^6.4.0",
+    "supertest": "^6.1.3"
   },
   "scripts": {
     "start": "npx nodemon --ignore client/ server.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "test": "npx jest"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
