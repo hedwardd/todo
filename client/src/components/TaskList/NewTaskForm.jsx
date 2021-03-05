@@ -81,7 +81,7 @@ const NewTaskForm = (props) => {
 
       <DoneBoxWrapper>
         {isLoading ? (
-          <DoneBox disabled="true" >
+          <DoneBox disabled={true} >
             <p>...</p>
           </DoneBox>
         ) : (
