@@ -29,7 +29,14 @@ const NewTaskForm = (props) => {
 
     const { name, dueDate } = formValues;
 
-    dispatch(addTask(name, dueDate, listAlias))
+    const dateValues = dueDate.split('-');
+    const year = dateValues[0];
+    const month = dateValues[1];
+    const day = dateValues[2];
+    const dateFromVals = new Date(year, month-1, day);
+    const dueDateTimestamp = dateFromVals.getTime();
+
+    dispatch(addTask(name, dueDateTimestamp, listAlias))
       .then(() => {
         setIsLoading(false);
         setFormValues({ name: '', dueDate: '' });
