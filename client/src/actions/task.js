@@ -9,7 +9,6 @@ import {
 } from './types';
 
 import TaskService from '../services/task.service';
-import ListService from '../services/list.service';
 
 export const getTasks = (listAlias) => (dispatch) => {
   return TaskService.getTasks(listAlias)
