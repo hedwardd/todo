@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { checkAliasAvailability, addList, checkListExistence, resetState } from '../../actions/list';
+import { setMessage } from '../../actions/message';
 import { SectionWrapperCol, H2Wrapper, StyledH2, InputWrapper, StyledInput, StyledLoader, MessageWrapper, MessageText } from '../../styles/HomeScreen/LookupCard';
 import { Card } from '../../styles/HomeScreen/Card';
 import { PrimaryButton, PrimaryButtonText, TertiaryButton, TertiaryButtonText } from '../../styles/HomeScreen/Buttons';
@@ -51,7 +52,10 @@ const LookupCard = ({ isUserCreating, setIsUserCreating }) => {
 
   const handlePrimaryClick = isUserCreating
     ? () => dispatch(addList(aliasInput))
-    : () => history.push(`/tasks/${aliasInput}`);
+    : () => {
+      dispatch(setMessage('Welcome back!'));
+      history.push(`/tasks/${aliasInput}`);
+    };
 
   const handleChange = ({ target }) => {
     const { value } = target;
