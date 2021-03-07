@@ -1,86 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-import { checkAliasAvailability, addList, checkListExistence, resetState } from '../../actions/list';
-import { setMessage } from '../../actions/message';
+import React from 'react';
 import { SectionWrapperCol, H2Wrapper, StyledH2, InputWrapper, StyledInput, StyledLoader, MessageWrapper, MessageText } from '../../styles/HomeScreen/LookupCard';
 import { Card } from '../../styles/HomeScreen/Card';
 import { PrimaryButton, PrimaryButtonText, TertiaryButton, TertiaryButtonText } from '../../styles/HomeScreen/Buttons';
 
-const AliasRegEx = /^[a-z0-9_-]{0,15}$/;
-
-const LookupCard = ({ isUserCreating, setIsUserCreating }) => {
-
-  const { isAliasAvailable, newListCreated, listFound } = useSelector(state => state.list);
-  const { message } = useSelector(state => state.message);
-
-  const [isLoading, setIsLoading] = useState(false);
-  
-  const [aliasInput, setAliasInput] = useState("");
-  
-  const dispatch = useDispatch();
-  
-  const [toCheck, setToCheck] = useState(false);
-  const checkFunc = isUserCreating ? checkAliasAvailability : checkListExistence;
-  
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (aliasInput.length > 2) {
-        setIsLoading(true);
-        dispatch(checkFunc(aliasInput))
-          .then(() => {
-            setIsLoading(false);
-            setToCheck(false);
-          })
-          .catch(() => {
-            setIsLoading(false);
-            setToCheck(false);
-          });
-      }
-      else setIsLoading(false);
-    }, 500);
-
-    return () => {clearTimeout(timer)};
-  }, [aliasInput]);
-
-  const handleBackButton = () => {
-    setIsUserCreating(null);
-    dispatch(resetState());
-  }
-
-  const history = useHistory();
-
-  const handlePrimaryClick = isUserCreating
-    ? () => dispatch(addList(aliasInput))
-    : () => {
-      dispatch(setMessage('Welcome back!'));
-      history.push(`/tasks/${aliasInput}`);
-    };
-
-  const handleChange = ({ target }) => {
-    const { value } = target;
-    if (AliasRegEx.test(value)) {
-      setAliasInput(value);
-      setToCheck(true);
-    }
-    if (value.length < 3)
-      dispatch(resetState);
-  };
-
-  useEffect(() => {
-    if (newListCreated)
-      history.push(`/tasks/${aliasInput}`);
-  }, [newListCreated]);
-
-  const headerText = isUserCreating ? "Pick an alias..." : "Enter your alias...";
-  const buttonText = isUserCreating ? "Create" : "Go to List";
-  const lookupError = isUserCreating ? !isAliasAvailable : !listFound;
-  const isButtonDisabled = toCheck || isLoading || isUserCreating ? !isAliasAvailable : !listFound;
+const LookupCard = ({ handleBackClick, handlePrimaryClick, handleInputChange, aliasInput, isLoading, headerText, buttonText, isPrimaryButtonDisabled, displayMessage, isErrorMessage }) => {
 
   return (
     <Card>
       <TertiaryButton
-        onClick={handleBackButton}
+        onClick={handleBackClick}
       >
         <TertiaryButtonText>Back</TertiaryButtonText>
       </TertiaryButton>
@@ -96,7 +24,7 @@ const LookupCard = ({ isUserCreating, setIsUserCreating }) => {
           <StyledInput
             placeholder="my-list"
             value={aliasInput}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
           {isLoading ? (
             <StyledLoader 
@@ -110,19 +38,17 @@ const LookupCard = ({ isUserCreating, setIsUserCreating }) => {
         </InputWrapper>
 
         <MessageWrapper>
-          {!toCheck && !isLoading && message && (
             <MessageText
-              error={lookupError}
+              error={isErrorMessage}
             >
-              {message}
+              {displayMessage}
             </MessageText>
-          )}
         </MessageWrapper>
       </SectionWrapperCol>
 
       <SectionWrapperCol>
         <PrimaryButton
-          disabled={isButtonDisabled}
+          disabled={isPrimaryButtonDisabled}
           onClick={handlePrimaryClick}
         >
           <PrimaryButtonText>
