@@ -1,7 +1,20 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-  logging: false,
+const { DB, DB_USERNAME, DB_PASSWORD, DB_HOST } = process.env;
+
+const sequelize = new Sequelize({
+  database: DB,
+  username: DB_USERNAME,
+  password: DB_PASSWORD,
+  host: DB_PASSWORD,
+  host: DB_HOST,
+  dialect: "postgres",
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    }
+  }
 });
 
 const db = {};
