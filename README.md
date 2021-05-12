@@ -6,7 +6,7 @@
   <p align="center">
     Simple To-Do List Maker
     <br />
-    <a href="http://todo-hd.herokuapp.com/">View Live</a>
+    <a href="2/todo-hd.herokuapp.com/">View Live</a>
     ·
     <a href="https://github.com/hedwardd/todo/issues">Report Bug</a>
     ·
@@ -77,13 +77,13 @@ Project Link: [Source](https://github.com/hedwardd/todo), [Live](https://todo-hd
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
-* [Themes by Helen Thum](helenthum.com)
-* [Sequelize](sequelize.org/)
-* [node-postgres](github.com/brianc/node-postgres)
-* [styled-components](styled-components.com)
-* [react-loader-spinner](github.com/mhnpd/react-loader-spinner)
-* [dotenv](github.com/motdotla/dotenv)
-* [Best-README-Template](github.com/othneildrew/Best-README-Template)
+* [Themes by Helen Thum](https://helenthum.com)
+* [Sequelize](https://sequelize.org/)
+* [node-postgres](https://github.com/brianc/node-postgres)
+* [styled-components](https://styled-components.com)
+* [react-loader-spinner](https://github.com/mhnpd/react-loader-spinner)
+* [dotenv](https://github.com/motdotla/dotenv)
+* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 
 
 
