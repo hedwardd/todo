@@ -9,5 +9,6 @@ input {
 }
 button {
   font-family: -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue;
+  cursor: pointer;
 }
 `

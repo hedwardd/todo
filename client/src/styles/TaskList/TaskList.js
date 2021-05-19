@@ -20,6 +20,7 @@ input {
 }
 button {
   font-family: ${({ theme }) => theme.fontFamily}, Arial;
+  cursor: pointer;
 }
 `
 
