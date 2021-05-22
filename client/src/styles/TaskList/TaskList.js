@@ -6,7 +6,8 @@ import device from '../device';
 export const TaskListGlobalStyles = createGlobalStyle`
 body {
   margin: 0;
-  transition: all 0.25s linear;
+  /* transition: all 3s cubic-bezier(.25,1.5,.75,-0.5); */
+  transition: all 3s ease;
   font-family: ${({ theme }) => theme.fontFamily}, Arial;
   font-style: normal;
   font-weight: normal;
