@@ -23,22 +23,13 @@ box-shadow: 0px ${layoutSize[4]} ${layoutSize[5]} rgba(0, 0, 0, 0.12);
 border-radius: ${layoutSize[2]};
 `;
 
-export const H2Wrapper = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-
-flex-grow: 1;
-margin: 0px ${layoutSize[5]};
-`;
-
 export const StyledH2 = styled.h2`
 /* Header / Card */
+margin: auto;
+
 font-style: normal;
 font-weight: bold;
 font-size: ${fontSize[6]};
-
 text-align: center;
 
 color: ${NeutralColor[700]};
