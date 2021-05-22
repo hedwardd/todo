@@ -9,6 +9,7 @@ flex-direction: row;
 justify-content: center;
 align-items: center;
 padding: ${layoutSize[2]} ${layoutSize[4]};
+margin: auto;
 
 height: ${layoutSize[6]};
 
@@ -38,6 +39,7 @@ flex-direction: row;
 justify-content: center;
 align-items: center;
 padding: ${layoutSize[2]} ${layoutSize[4]};
+margin: auto;
 
 height: ${layoutSize[6]};
 
