@@ -81,6 +81,7 @@ const NewTaskForm = (props) => {
         ) : (
           <DoneBox
             as="button"
+            title="Add new task"
           >
             +
           </DoneBox>

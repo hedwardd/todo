@@ -59,6 +59,7 @@ const TaskList = (props) => {
             <DoneBox
               as="button"
               onClick={() => handleUpdateTask(task.id, { isDone: true })}
+              title="Mark as done"
             />
           </TaskListItem>
         )
