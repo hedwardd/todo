@@ -1,8 +1,11 @@
 import styled, { createGlobalStyle } from 'styled-components';
+
+import layoutSize from '../layoutSize';
 import device from '../device';
 
 export const TaskListGlobalStyles = createGlobalStyle`
 body {
+  margin: 0;
   transition: all 0.25s linear;
   font-family: ${({ theme }) => theme.fontFamily}, Arial;
   font-style: normal;
@@ -25,35 +28,47 @@ button {
 `
 
 export const TaskListWrapper = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
+display: grid;
+grid-template-columns: 3fr 2fr 1fr;
+gap: ${layoutSize[3]};
 align-items: center;
-width: 90%;
-height: auto;
-margin: auto;
-margin-top: 5vw;
-margin-bottom: 5vw;
+
+margin: ${layoutSize[4]} ${layoutSize[3]};
+padding: ${layoutSize[3]};
+
 border-radius: 4px;
 backdrop-filter: blur(4px);
 background: ${({ theme }) => theme.listBackground};
+
 @media ${device.tablet} {
-  width: 60%;
+  width: ${layoutSize[14]};
+  margin: ${layoutSize[6]} auto;
+  padding: ${layoutSize[4]} ${layoutSize[5]};
+  gap: ${layoutSize[5]};
 }
 @media ${device.laptop} {
-  width: 40%;
-  margin-top: 2vw;
-  margin-bottom: 2vw;
+  width: ${layoutSize[15]};
+  margin: ${layoutSize[7]} auto;
+  padding: ${layoutSize[6]};
+  gap: ${layoutSize[6]};
+}
+@media ${device.laptopL} {
+  width: ${layoutSize[16]};
+  margin: ${layoutSize[8]} auto;
 }
 `;
 
 export const ListHeading = styled.h1`
+grid-column: 1 / -1;
+justify-self: center;
+margin-bottom: 3vh;
+
+font-size: 8vw;
 font-style: normal;
 font-weight: normal;
-font-size: 8vw;
-margin-bottom: 3vh;
 text-shadow: 1px 1px 1px ${({ theme }) => theme.headingTextShadowColor};
 color: ${({ theme }) => theme.headingColor};
+
 @media ${device.tablet} {
   font-size: 6vw;
 }
@@ -62,23 +77,16 @@ color: ${({ theme }) => theme.headingColor};
 }
 `
 
-export const SubheadingSection = styled.div`
-width: 90%;
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-`;
+const SubheadingWrapper = styled.h2`
+margin-bottom: 0;
 
-const SubheadingWrapper = styled.div`
 text-align: center;
 font-size: 5vw;
 font-style: normal;
 font-weight: normal;
-margin-bottom: 0;
-padding-bottom: 0;
 color: ${({ theme }) => theme.subHeadingColor || theme.headingColor};
 text-shadow: .5px .5px 1px ${({ theme }) => theme.subHeadingTextShadowColor || theme.headingTextShadowColor};
+
 @media ${device.tablet} {
   font-size: 3vw;
 }
@@ -88,59 +96,33 @@ text-shadow: .5px .5px 1px ${({ theme }) => theme.subHeadingTextShadowColor || t
 `;
 
 export const ItemSubheading = styled(SubheadingWrapper)`
-width: 50%;
+grid-column: 1 / 2;
 `;
 
 export const DateSubheading = styled(SubheadingWrapper)`
-width: 33%;
+grid-column: 2 / 3;
 `;
 
 export const StatusSubheading = styled(SubheadingWrapper)`
-width: 16.7%;
+grid-column: 3 / 4;
 `;
 
 export const StyledUL = styled.ul`
-list-style-type: none;
-width: 90%;
-margin-top: 0;
-display: flex;
-flex-direction: column;
-justify-content: center;
-padding: 0;
+display: contents;
 `;
 
 export const TaskListItem = styled.li`
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-`;
-
-const BoxWrapper = styled.div`
-// display: flex;
-// justify-content: center;
-`;
-
-export const NameBoxWrapper = styled(BoxWrapper)`
-width: 50%;
-`;
-
-export const DateBoxWrapper = styled(BoxWrapper)`
-width: 33%;
-`;
-
-export const DoneBoxWrapper = styled(BoxWrapper)`
-width: 16.7%;
+display: contents;
 `;
 
 const TaskBox = styled.div`
 min-height: 8vw;
-font-size: 15px;
-margin: 10px auto;
-width: 90%;
+
 display: flex;
 justify-content: center;
 align-items: center;
+
+font-size: 15px;
 text-align: center;
 border-radius: 4px;
 text-shadow: .2px .2px 1px ${({ theme }) => theme.taskTextShadowColor};
@@ -168,6 +150,8 @@ border: 1px solid ${({ theme }) => theme.taskDateBorderColor};
 export const DoneBox = styled(TaskBox)`
 width: 8vw;
 height: 8vw;
+justify-self: center;
+
 color: ${({ theme }) => theme.doneButtonColor};
 border: 1px solid ${({ theme }) => theme.doneButtonBorderColor};
 @media ${device.tablet} {
@@ -180,8 +164,16 @@ export const StyledMessage = styled.p`
 color: ${({ theme }) => theme.subHeadingColor || theme.headingColor};
 `;
 
+export const CreditsWrapper = styled.div`
+grid-column: 1 / 3;
+color: ${({ theme }) => theme.creditsColor || theme.doneButtonColor};
+a {
+  color: inherit;
+}
+`;
+
 export const StyledSelect = styled.select`
-align-self: flex-end;
+grid-column: 3 / 4;
 font-size: 16px;
 padding: 0.5vw;
 top: 2vw;
@@ -191,14 +183,5 @@ color: #ebebeb;
 background-color: #696969;
 @media ${device.tablet} {
   font-size: 20px;
-}
-`;
-
-export const CreditsWrapper = styled.div`
-margin: auto 5%;
-align-self: flex-start;
-color: ${({ theme }) => theme.creditsColor || theme.doneButtonColor};
-a {
-  color: inherit;
 }
 `;

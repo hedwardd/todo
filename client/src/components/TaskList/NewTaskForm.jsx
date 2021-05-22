@@ -52,8 +52,6 @@ const NewTaskForm = (props) => {
       as="form"
       onSubmit={(event) => handleSubmit(event)}
     >
-      
-      <NameBoxWrapper>
         <NameBox
           as="input"
           type="text"
@@ -64,9 +62,7 @@ const NewTaskForm = (props) => {
           value={formValues.name}
           onChange={(event) => handleChange(event)} 
         />
-      </NameBoxWrapper>
     
-      <DateBoxWrapper>
         <DateInput
           as="input"
           type="date"
@@ -77,9 +73,7 @@ const NewTaskForm = (props) => {
           value={formValues.dueDate}
           onChange={(event) => handleChange(event)} 
         />
-      </DateBoxWrapper>    
 
-      <DoneBoxWrapper>
         {isLoading ? (
           <DoneBox disabled={true} >
             <p>...</p>
@@ -91,7 +85,6 @@ const NewTaskForm = (props) => {
             +
           </DoneBox>
         )}
-      </DoneBoxWrapper>
     </TaskListItem>
   )
 }

@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { getTasks, updateTask } from '../../actions/task';
 import NewTaskForm from './NewTaskForm';
 import ThemePicker from './ThemePicker';
-import { TaskListWrapper, ListHeading, SubheadingSection, ItemSubheading, DateSubheading, StatusSubheading, StyledUL, TaskListItem, NameBoxWrapper, DateBoxWrapper, DoneBoxWrapper, NameBox, DateBox, StyledMessage, DoneBox, CreditsWrapper } from '../../styles/TaskList/TaskList';
+import { TaskListWrapper, ListHeading, ItemSubheading, DateSubheading, StatusSubheading, StyledUL, TaskListItem, NameBoxWrapper, DateBoxWrapper, DoneBoxWrapper, NameBox, DateBox, StyledMessage, DoneBox, FooterSection, CreditsWrapper } from '../../styles/TaskList/TaskList';
 
 const TaskList = (props) => {
 
@@ -29,45 +29,37 @@ const TaskList = (props) => {
         My To-Dos
       </ListHeading>
 
-      <SubheadingSection>
-        <ItemSubheading>
-          Item
-        </ItemSubheading>
+      <ItemSubheading>
+        Item
+      </ItemSubheading>
 
-        <DateSubheading>
-          Date
-        </DateSubheading>
+      <DateSubheading>
+        Date
+      </DateSubheading>
 
-        <StatusSubheading>
-          Status
-        </StatusSubheading>
-      </SubheadingSection>
+      <StatusSubheading>
+        Status
+      </StatusSubheading>
       
       <StyledUL>
         {tasks.map((task) => task.isDone ? "" : (
           <TaskListItem key={task.id}>
-            <NameBoxWrapper>
-              <NameBox>
-                <p>
-                  {task.name}
-                </p>
-              </NameBox>
-            </NameBoxWrapper>
+            <NameBox>
+              <p>
+                {task.name}
+              </p>
+            </NameBox>
 
-            <DateBoxWrapper>
-              <DateBox>
-                <p>
-                  {new Date(task.dueDate).toLocaleDateString()}
-                </p>
-              </DateBox>
-            </DateBoxWrapper>
+            <DateBox>
+              <p>
+                {new Date(task.dueDate).toLocaleDateString()}
+              </p>
+            </DateBox>
 
-            <DoneBoxWrapper>
-              <DoneBox
-                as="button"
-                onClick={() => handleUpdateTask(task.id, { isDone: true })}
-              />
-            </DoneBoxWrapper>
+            <DoneBox
+              as="button"
+              onClick={() => handleUpdateTask(task.id, { isDone: true })}
+            />
           </TaskListItem>
         )
       )}
@@ -82,11 +74,12 @@ const TaskList = (props) => {
         </StyledMessage>
       )}
 
-      <ThemePicker />
 
       <CreditsWrapper>
         <p>Credits:<br/>Themes and design by <a href="http://www.helenthum.com/">Helen Thum</a></p>
       </CreditsWrapper>
+
+      <ThemePicker />
 
     </TaskListWrapper>
   );
