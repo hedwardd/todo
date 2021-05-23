@@ -1,8 +1,18 @@
 import styled from 'styled-components';
 import device from '../device';
-import { DateBox } from './TaskList';
+import { NameBox, DateBox } from './TaskList';
+
+export const NameInput = styled(NameBox)`
+::placeholder{
+  color: ${({ theme }) => theme.taskNameColor};
+  font-style: italic;
+  opacity: 0.6;
+}
+`;
 
 export const DateInput = styled(DateBox)`
+font-style: italic;
+
 font-size: 10px;
 @media ${device.mobileM} {
   font-size: 12px;

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { addTask } from '../../actions/task';
 import { TaskListItem, NameBoxWrapper, DateBoxWrapper, DoneBoxWrapper, NameBox, DoneBox } from '../../styles/TaskList/TaskList';
-import { DateInput } from '../../styles/TaskList/NewTaskForm';
+import { NameInput, DateInput } from '../../styles/TaskList/NewTaskForm';
 
 
 const NewTaskForm = (props) => {
@@ -52,9 +52,10 @@ const NewTaskForm = (props) => {
       as="form"
       onSubmit={(event) => handleSubmit(event)}
     >
-        <NameBox
+        <NameInput
           as="input"
           type="text"
+          placeholder="Add new task"
           required
           id="name"
           name="name"
