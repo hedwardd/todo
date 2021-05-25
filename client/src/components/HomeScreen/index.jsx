@@ -79,12 +79,12 @@ const HomeScreen = (props) => {
 
   const headerText = isUserCreating ? "Pick an alias..." : "Enter your alias...";
   const buttonText = isUserCreating ? "Create" : "Go to List";
-  const isPrimaryButtonDisabled =
+  const isPrimaryButtonEnabled =
     (toCheck || isLoading)
-      ? isUserCreating
-        ? !isAliasAvailable
-        : !listFound
-      : false;
+      ? true
+      : isUserCreating
+        ? isAliasAvailable
+        : listFound
   const displayMessage = (!toCheck && !isLoading)
     ? message
     : '';
@@ -105,7 +105,7 @@ const HomeScreen = (props) => {
       isLoading={isLoading}
       headerText={headerText}
       buttonText={buttonText}
-      isPrimaryButtonDisabled={isPrimaryButtonDisabled}
+      isPrimaryButtonEnabled={isPrimaryButtonEnabled}
       displayMessage={displayMessage}
       isErrorMessage={isErrorMessage}
     />

@@ -3,7 +3,7 @@ import { SectionWrapperCol, H2Wrapper, StyledH2, InputWrapper, StyledInput, Styl
 import { Card } from '../../styles/HomeScreen/Card';
 import { PrimaryButton, PrimaryButtonText, TertiaryButton, TertiaryButtonText } from '../../styles/HomeScreen/Buttons';
 
-const LookupCard = ({ handleBackClick, handlePrimaryClick, handleInputChange, aliasInput, isLoading, headerText, buttonText, isPrimaryButtonDisabled, displayMessage, isErrorMessage }) => {
+const LookupCard = ({ handleBackClick, handlePrimaryClick, handleInputChange, aliasInput, isLoading, headerText, buttonText, isPrimaryButtonEnabled, displayMessage, isErrorMessage }) => {
 
   return (
     <Card>
@@ -48,7 +48,7 @@ const LookupCard = ({ handleBackClick, handlePrimaryClick, handleInputChange, al
 
       <SectionWrapperCol>
         <PrimaryButton
-          disabled={isPrimaryButtonDisabled}
+          disabled={!isPrimaryButtonEnabled}
           onClick={handlePrimaryClick}
         >
           <PrimaryButtonText>
