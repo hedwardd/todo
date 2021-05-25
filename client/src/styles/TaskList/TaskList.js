@@ -162,6 +162,8 @@ border: 1px solid ${({ theme }) => theme.doneButtonBorderColor};
 `;
 
 export const StyledMessage = styled.p`
+grid-column: 1 / 4;
+justify-self: center;
 color: ${({ theme }) => theme.subHeadingColor || theme.headingColor};
 `;
 
