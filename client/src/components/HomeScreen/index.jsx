@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { checkAliasAvailability, addList, checkListExistence, resetState } from '../../actions/list';
 import { setMessage } from '../../actions/message';
+import Card from '../../styles/HomeScreen/Card';
 import InitialCard from './InitialCard';
 import LookupCard from './LookupCard';
 
@@ -92,24 +93,28 @@ const HomeScreen = (props) => {
     ? !isAliasAvailable
     : !listFound;
 
-  return isUserCreating === null ? (
-    <InitialCard
-      setIsUserCreating={setIsUserCreating}
-    />
-  ) : (
-    <LookupCard
-      handleBackClick={handleBackClick}
-      handlePrimaryClick={handlePrimaryClick}
-      handleInputChange={handleInputChange}
-      aliasInput={aliasInput}
-      isLoading={isLoading}
-      headerText={headerText}
-      buttonText={buttonText}
-      isPrimaryButtonEnabled={isPrimaryButtonEnabled}
-      displayMessage={displayMessage}
-      isErrorMessage={isErrorMessage}
-    />
-  );
+  return (
+    <Card>
+      {isUserCreating === null ? (
+        <InitialCard
+          setIsUserCreating={setIsUserCreating}
+        />
+      ) : (
+        <LookupCard
+          handleBackClick={handleBackClick}
+          handlePrimaryClick={handlePrimaryClick}
+          handleInputChange={handleInputChange}
+          aliasInput={aliasInput}
+          isLoading={isLoading}
+          headerText={headerText}
+          buttonText={buttonText}
+          isPrimaryButtonEnabled={isPrimaryButtonEnabled}
+          displayMessage={displayMessage}
+          isErrorMessage={isErrorMessage}
+        />
+      )}
+    </Card>
+  )
 }
 
 export default HomeScreen;

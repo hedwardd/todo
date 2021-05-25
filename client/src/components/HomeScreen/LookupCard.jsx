@@ -1,12 +1,11 @@
 import React from 'react';
-import { SectionWrapperCol, H2Wrapper, StyledH2, InputWrapper, StyledInput, StyledLoader, MessageWrapper, MessageText } from '../../styles/HomeScreen/LookupCard';
-import { Card } from '../../styles/HomeScreen/Card';
+import { ContentWrapper, SectionWrapperCol, H2Wrapper, StyledH2, InputWrapper, StyledInput, StyledLoader, MessageWrapper, MessageText } from '../../styles/HomeScreen/LookupCard';
 import { PrimaryButton, PrimaryButtonText, TertiaryButton, TertiaryButtonText } from '../../styles/HomeScreen/Buttons';
 
 const LookupCard = ({ handleBackClick, handlePrimaryClick, handleInputChange, aliasInput, isLoading, headerText, buttonText, isPrimaryButtonEnabled, displayMessage, isErrorMessage }) => {
 
   return (
-    <Card>
+    <ContentWrapper>
       <TertiaryButton
         onClick={handleBackClick}
       >
@@ -56,7 +55,7 @@ const LookupCard = ({ handleBackClick, handlePrimaryClick, handleInputChange, al
           </PrimaryButtonText>
         </PrimaryButton>
       </SectionWrapperCol>
-    </Card>
+    </ContentWrapper>
   );
 }
 

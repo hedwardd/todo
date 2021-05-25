@@ -4,6 +4,15 @@ import layoutSize from '../layoutSize';
 import fontSize from '../fontSize';
 import { NeutralColor, GreenColor, RedColor } from './Colors';
 
+export const ContentWrapper = styled.div`
+margin: ${layoutSize[6]};
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: stretch;
+`;
+
 export const SectionWrapperCol = styled.div`
 display: flex;
 flex-direction: column;
