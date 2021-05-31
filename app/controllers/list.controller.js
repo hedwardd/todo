@@ -58,7 +58,7 @@ exports.checkAlias = (req, res) => {
       if (data === null) {
         res.send({
           available: true,
-          message: "That alias is available.",
+          message: "That alias is available!",
         });
       } else {
         res.send({
