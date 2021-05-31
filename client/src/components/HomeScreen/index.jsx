@@ -82,7 +82,7 @@ const HomeScreen = (props) => {
   const buttonText = isUserCreating ? "Create" : "Go to List";
   const isPrimaryButtonEnabled =
     (toCheck || isLoading)
-      ? true
+      ? false
       : isUserCreating
         ? isAliasAvailable
         : listFound
