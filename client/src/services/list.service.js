@@ -16,8 +16,22 @@ const addList = (alias) => {
   });
 }
 
+const getTheme = (alias) => {
+  return fetch(`${API_URL}/${alias}/theme`);
+}
+
+const updateTheme = (alias, theme) => {
+  return fetch(`${API_URL}/${alias}/theme`, {
+    method: 'PUT',
+    body: JSON.stringify({ theme: theme }),
+    headers: { 'Content-Type': 'application/json' },
+  })
+}
+
 export default {
   getListWithTasks,
   fetchListAvailability,
   addList,
+  getTheme,
+  updateTheme,
 };

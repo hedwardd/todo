@@ -8,6 +8,7 @@ import {
   Route
 } from "react-router-dom";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
 import TaskList from './components/TaskList';
 import HomeScreen from './components/HomeScreen';
 import themes from './styles/themes';

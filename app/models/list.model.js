@@ -16,6 +16,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     theme: {
       type: DataTypes.STRING,
+      defaultValue: "classy",
     }
   });
 

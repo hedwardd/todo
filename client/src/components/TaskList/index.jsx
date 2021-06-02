@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
+
 import { getTasks, updateTask } from '../../actions/task';
+import { getTheme, setTheme } from '../../actions/theme';
 import NewTaskForm from './NewTaskForm';
 import ThemePicker from './ThemePicker';
-import { TaskListWrapper, ListHeading, ItemSubheading, DateSubheading, StatusSubheading, StyledUL, TaskListItem, NameBoxWrapper, DateBoxWrapper, DoneBoxWrapper, NameBox, DateBox, StyledMessage, DoneBox, FooterSection, CreditsWrapper } from '../../styles/TaskList/TaskList';
+import { TaskListWrapper, ListHeading, ItemSubheading, DateSubheading, StatusSubheading, StyledUL, TaskListItem, NameBox, DateBox, StyledMessage, DoneBox, CreditsWrapper } from '../../styles/TaskList/TaskList';
 
 const TaskList = (props) => {
 
@@ -12,15 +14,23 @@ const TaskList = (props) => {
   const { message } = useSelector(state => state.message);
 
   const dispatch = useDispatch();
+  const { listAlias } = useParams();
 
   const handleUpdateTask = (taskId, update) => {
     dispatch(updateTask(taskId, update));
   };
 
-  const { listAlias } = useParams();
+  function handleUpdateTheme(alias, theme) {
+    dispatch(setTheme(alias, theme));
+  } 
+
   useEffect(() => {
     if (toFetch) dispatch(getTasks(listAlias));
   }, [toFetch]);
+
+  useEffect(() => {
+    dispatch(getTheme(listAlias));
+  }, listAlias);
 
   return (
     <TaskListWrapper>
@@ -80,7 +90,7 @@ const TaskList = (props) => {
         <p>Credits:<br/>Themes and design by <a href="http://www.helenthum.com/">Helen Thum</a></p>
       </CreditsWrapper>
 
-      <ThemePicker />
+      <ThemePicker handleUpdateTheme={handleUpdateTheme} />
 
     </TaskListWrapper>
   );

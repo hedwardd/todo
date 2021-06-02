@@ -118,17 +118,17 @@ exports.updateTheme = (req, res) => {
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "List was updated successfully."
+          message: "Theme successfully updated."
         });
       } else {
         res.send({
-          message: `Cannot update List with alias=${alias}. Maybe List was not found or req.body is empty!`
+          message: `Cannot update list with alias ${alias}. Please make sure it is correct and try again.`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating List with alias=" + alias
+        message: "Error updating list with alias" + alias
       });
     });
 };

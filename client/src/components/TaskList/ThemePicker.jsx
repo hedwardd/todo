@@ -1,18 +1,21 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from "react-router";
+
 import { setTheme } from '../../actions/theme';
 import { StyledSelect } from '../../styles/TaskList/TaskList';
 
 
-const ThemePicker = (props) => {
+const ThemePicker = ({ handleUpdateTheme }) => {
 
   const { theme } = useSelector(state => state.theme);
 
   const dispatch = useDispatch();
+  const { listAlias } = useParams();
 
   const handleChange = ({ target }) => {
 
-    dispatch(setTheme(target.value));
+    dispatch(setTheme(listAlias, target.value));
   };
 
   return (
