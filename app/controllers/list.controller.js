@@ -74,6 +74,65 @@ exports.checkAlias = (req, res) => {
     });
 };
 
+// Get theme for list by alias
+exports.getTheme = (req, res) => {
+  const { alias } = req.params;
+
+  // Validate alias
+  if (!isValidAlias(alias)) {
+    res.json({
+      error: "Invalid alias."
+    });
+    return;
+  }
+
+  List.findOne({ where: { alias: alias } })
+    .then(data => {
+      // No alias by that name
+      if (data === null) {
+        res.status(500).send({
+          message: "No list with that alias found."
+        });
+      } else {
+        res.send({
+          theme: data.theme,
+          message: "Theme successfully retrieved.",
+        })
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error retrieving list with alias=" + alias
+      });
+    });
+};
+
+// Get theme for list by alias
+exports.updateTheme = (req, res) => {
+  const { alias } = req.params;
+  const { theme } = req.body;
+
+  List.update({ theme }, {
+    where: { alias: alias }
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: "List was updated successfully."
+        });
+      } else {
+        res.send({
+          message: `Cannot update List with alias=${alias}. Maybe List was not found or req.body is empty!`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error updating List with alias=" + alias
+      });
+    });
+};
+
 // // Get a list with tasks
 // exports.getListWithTasksByAlias = (req, res) => {
 //   const alias = req.params.alias;

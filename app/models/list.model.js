@@ -1,8 +1,10 @@
+const { DataTypes } = require('sequelize');
+
 module.exports = (sequelize, Sequelize) => {
   
   const List = sequelize.define("list", {
     alias: {
-      type: Sequelize.TEXT,
+      type: DataTypes.TEXT,
       allowNull: false,
       unique: true,
       validate: {
@@ -12,6 +14,9 @@ module.exports = (sequelize, Sequelize) => {
         },
       },
     },
+    theme: {
+      type: DataTypes.STRING,
+    }
   });
 
   return List;

@@ -18,8 +18,14 @@ module.exports = (app) => {
   // Delete a list with alias
   router.delete('/:alias', lists.delete);
 
-  // Retrieve a single list with alias
+  // Check whether an alias is available
   router.get('/:alias/avail', lists.checkAlias);
+
+  // Retrieves the theme for a list
+  router.get('/:alias/theme', lists.getTheme);
+
+  // Update theme for list 
+  router.put('/:alias/theme', lists.updateTheme);
 
   // // Retrieve a single list with id
   // router.get('/:id', lists.findOne);
