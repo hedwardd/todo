@@ -21,13 +21,11 @@ const NewTaskForm = (props) => {
 
   const dispatch = useDispatch();
   const { listAlias } = useParams();
+  const { name, dueDate } = formValues;
 
   function handleSubmit(event) {
     event.preventDefault();
-    
     setIsLoading(true);
-
-    const { name, dueDate } = formValues;
 
     const dateValues = dueDate.split('-');
     const year = dateValues[0];
@@ -50,7 +48,7 @@ const NewTaskForm = (props) => {
   return (
     <TaskListItem
       as="form"
-      onSubmit={(event) => handleSubmit(event)}
+      onSubmit={handleSubmit}
     >
         <NameInput
           as="input"
@@ -61,7 +59,7 @@ const NewTaskForm = (props) => {
           name="name"
           label="Name"
           value={formValues.name}
-          onChange={(event) => handleChange(event)} 
+          onChange={handleChange} 
         />
     
         <DateInput
@@ -72,7 +70,7 @@ const NewTaskForm = (props) => {
           name="dueDate"
           label="dueDate"
           value={formValues.dueDate}
-          onChange={(event) => handleChange(event)} 
+          onChange={handleChange} 
         />
 
         {isLoading ? (
