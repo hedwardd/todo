@@ -30,7 +30,7 @@ const TaskList = (props) => {
 
   useEffect(() => {
     dispatch(getTheme(listAlias));
-  }, listAlias);
+  }, [listAlias]);
 
   return (
     <TaskListWrapper>
