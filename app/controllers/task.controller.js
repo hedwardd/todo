@@ -24,7 +24,9 @@ exports.create = (req, res) => {
   // Save Task in the database
   Task.create(task)
     .then(data => {
-      res.send(data);
+      res.send({
+        message: 'Task added.'
+      });
     })
     .catch(err => {
       res.status(500).send({
