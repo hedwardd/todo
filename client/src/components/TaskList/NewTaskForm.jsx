@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from "react-router-dom";
-import { addTask } from '../../actions/task';
-import { TaskListItem, NameBoxWrapper, DateBoxWrapper, DoneBoxWrapper, NameBox, DoneBox } from '../../styles/TaskList/TaskList';
-import { NameInput, DateInput } from '../../styles/TaskList/NewTaskForm';
+import formatDate from 'date-fns/format'
 
+import { addTask } from '../../actions/task';
+import { TaskListItem, DoneBox } from '../../styles/TaskList/TaskList';
+import { NameInput, DateInput } from '../../styles/TaskList/NewTaskForm';
 
 const NewTaskForm = (props) => {
 
@@ -27,21 +28,11 @@ const NewTaskForm = (props) => {
   function handleDateFocus(event) {
     event.preventDefault();
     if (dueDate === '') {
-      const today = new Date();
-      const year = today.getFullYear();
-      let month = today.getMonth() + 1;
-      let day = today.getDate();
-
-      if (month < 10)
-        month = '0' + month;
-      if (day < 10)
-        day = '0' + day;
-
-      const formattedDate = [year, month, day].join('-');
+      const todayDateFormatted = formatDate(new Date(), 'yyyy-MM-dd');
 
       setFormValues({
         ...formValues,
-        dueDate: formattedDate,
+        dueDate: todayDateFormatted,
       });
     }
   }
