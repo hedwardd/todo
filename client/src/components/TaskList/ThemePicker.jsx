@@ -21,10 +21,10 @@ const ThemePicker = ({ handleUpdateTheme }) => {
   return (
     <StyledSelect value={theme} onChange={handleChange} title="Set list theme">
   		{/* <option value="light">light</option> */}
-  		<option value="dark">dark</option>
   		<option value="classy">classy</option>
   		<option value="nature">nature</option>
 			<option value="floral">floral</option>
+  		<option value="dark">dark</option>
 		</StyledSelect>
   )
 }
