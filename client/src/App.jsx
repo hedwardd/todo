@@ -27,7 +27,7 @@ function App() {
         families: fontFamilies,
       }
     })
-  })
+  }, []);
 
   let themeObject;
   switch (theme) {
